@@ -54,7 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="{{URL::asset('assets/global/css/plugins.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
-        <link href="{{URL::asset('assets/layouts/layout4/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{URL::asset('assets/layouts/layout4/css/layout.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{URL::asset('assets/layouts/layout4/css/themes/default.css')}}" rel="stylesheet" type="text/css" id="style_color" />
         <link href="{{URL::asset('assets/layouts/layout4/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
