@@ -47,11 +47,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN THEME LAYOUT STYLES -->
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> 
-        <style type="text/css">
-            body {
-                background-color: #ff9900;
-            }
-        </style>
         </head>
     <!-- END HEAD -->
 
@@ -60,7 +55,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="user-login-5">
             <div class="row bs-reset">
                 <div class="col-md-6 login-container bs-reset">
-                    <img class="login-logo login-6" src="{{ URL::asset('img/LogoHALO.png') }}" />
+                    <!--<img class="login-logo login-6" src="{{ URL::asset('img/LogoHALO.png') }}" />-->
                     <div class="login-content">
                         <h1>HALO Login</h1>
                         <p> Hubungan Antar Lembaga Online</p>

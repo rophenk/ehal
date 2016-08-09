@@ -9,6 +9,7 @@
   .user-login-5 .login-bg {
     background-position: center;
     background-size: cover;
+    background-color: #ff9900;
     background-repeat: no-repeat;
     min-height: 100vh; }
   .user-login-5 .login-logo {
@@ -30,14 +31,17 @@
       .user-login-5 .login-container > .login-content > h1 {
         font-size: 30px;
         font-weight: 300;
-        color: #4e5a64; }
+        /*color: #4e5a64;*/
+        color: #434343;  
+      }
       .user-login-5 .login-container > .login-content p {
-        color: #a0a9b4;
+        /*color: #a0a9b4;*/
+        color: #434343;
         font-size: 15px;
         line-height: 22px; }
       .user-login-5 .login-container > .login-content > .login-form {
         margin-top: 80px;
-        color: #a4aab2;
+        color: #434343;
         font-size: 13px; }
         .user-login-5 .login-container > .login-content > .login-form .form-control {
           width: 100%;
@@ -45,7 +49,7 @@
           border: none;
           border-bottom: 1px solid;
           border-color: #a0a9b4;
-          color: #868e97;
+          color: #434343;
           font-size: 14px;
           margin-bottom: 30px; }
           .user-login-5 .login-container > .login-content > .login-form .form-control:focus {
@@ -58,16 +62,16 @@
           .user-login-5 .login-container > .login-content > .login-form .rem-password > p {
             margin: 0; }
           .user-login-5 .login-container > .login-content > .login-form .rem-password > .rem-checkbox {
-            border-color: #a4aab2; }
+            border-color: #434343; }
         .user-login-5 .login-container > .login-content > .login-form .forgot-password {
           margin-right: 1em; }
           .user-login-5 .login-container > .login-content > .login-form .forgot-password > a {
-            color: #a4aab2; }
+            color: #434343; }
             .user-login-5 .login-container > .login-content > .login-form .forgot-password > a:hover {
-              color: #337ab7;
+              color: #434343;
               text-decoration: none; }
             .user-login-5 .login-container > .login-content > .login-form .forgot-password > a:focus {
-              color: #a4aab2;
+              color: #434343;
               text-decoration: none; }
     .user-login-5 .login-container > .login-footer {
       position: absolute;
@@ -81,20 +85,20 @@
           list-style: none;
           margin-right: 1em; }
         .user-login-5 .login-container > .login-footer .login-social a {
-          color: #a9b5be;
+          color: #434343;
           font-size: 18px; }
           .user-login-5 .login-container > .login-footer .login-social a:hover {
             color: #337ab7;
             text-decoration: none; }
           .user-login-5 .login-container > .login-footer .login-social a:focus {
-            color: #a9b5be; }
+            color: #434343; }
       .user-login-5 .login-container > .login-footer .login-copyright {
         padding-left: 0;
         margin-top: 6px; }
         .user-login-5 .login-container > .login-footer .login-copyright > p {
           margin: 0;
           font-size: 13px;
-          color: #a9b5be; }
+          color: #434343; }
   .user-login-5 .alert {
     margin-top: -60px; }
   .user-login-5 .form-group.has-error {

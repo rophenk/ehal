@@ -4,8 +4,9 @@
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="index.html">
-                        <img src="{{URL::asset('img/LogoHALO-small.png')}}" alt="logo" class="logo-default" /> </a>
+                    <a href="/dashboard">
+                        <!--<img src="{{URL::asset('img/LogoHALO-small.png')}}" alt="logo" class="logo-default" />-->
+                         </a><h2><span style="color:#CCCCCC;"> HALO </span></h2>
                     <div class="menu-toggler sidebar-toggler">
                         <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
                     </div>

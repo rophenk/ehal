@@ -9,6 +9,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 use App\Models\SpeakersModel;
 use App\Models\FractionModel;
+use App\Models\AssistantModel;
 use DB;
 
 class SpeakersController extends Controller
@@ -56,9 +57,12 @@ class SpeakersController extends Controller
     public function show(Request $request)
     {
         $user       = $request->user();
-        $speakers   = SpeakersModel::where('uuid', $request->uuid)->get();
+        $speakers   = SpeakersModel::where('uuid', $request->uuid)->first();
+        $speakers_id = $speakers->id;
+        $assistant = AssistantModel::where('speakers_id', $speakers->id)->get();
 
-        return view('halo.speaker-view', ['speakers' => $speakers, 'user' => $user]);
+        //return view('halo.speaker-view', ['speakers' => $speakers, 'user' => $user]);
+        return view('halo.speaker-view-2', ['speakers' => $speakers, 'assistant' => $assistant, 'user' => $user]);
     }
 
     /**

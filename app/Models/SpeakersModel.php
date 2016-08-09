@@ -9,7 +9,7 @@ class SpeakersModel extends Model
     protected $table = 'speakers';
 
     /**
-     * Get the post that owns the comment.
+     * Get the fraction of Speakers.
      */
 	public function fraction() {
 
