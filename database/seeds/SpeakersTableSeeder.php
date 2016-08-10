@@ -408,5 +408,19 @@ class SpeakersTableSeeder extends Seeder
 	        'photo' => 'http://halo.setjen.pertanian.go.id/halo/speakers/6907f223-c07a-44e5-bdaf-dfab8b0a8fb3/hamdani.jpg',
         ]);
 
+        DB::table('speakers')->insert([
+	        'uuid' => '7f223690-44e5-c07a-bdaf-dfab8b0a8fb3',
+	        'fraction_id' => '11',
+	        'name' => 'Test Anggota DPR',
+	        'email' => 'riki.rokhman.azis@gmail.com',
+	        'photo' => 'http://halo.setjen.pertanian.go.id/halo/speakers/7f223690-44e5-c07a-bdaf-dfab8b0a8fb3/tes.jpg',
+        ]);
+
+        DB::table('speakers')->insert([
+	        'uuid' => '2237f690-44e5-c07a-bdaf-a8fb3dfab8b0',
+	        'fraction_id' => '11',
+	        'name' => 'Test Kosong',
+        ]);
+
     }
 }

@@ -13,6 +13,30 @@ class WorkmeetingTableSeeder extends Seeder
     {
         //Seed Untuk Table Workmeeting
         DB::table('workmeeting')->insert([
+        'uuid' => '12ed4a03-a723-44c2-84d5-15567ac8b508',
+        'date' => '2016-01-25',
+        'name' => 'Rapat Kerja Menteri Pertanian RI Dengan Komisi IV DPR RI Evaluasi Pelaksanaan Anggaran 2015',
+        'location' => 'Kementerian Pertanian',
+        'description' => 'Evaluasi Pelaksanaan Anggaran 2015',
+        ]);
+
+        DB::table('workmeeting')->insert([
+        'uuid' => 'fc640378-3544-4571-b9ea-d8a89199a9e6',
+        'date' => '2016-04-14',
+        'name' => 'Rapat Kerja Menteri Pertanian RI Dengan Komisi IV DPR RI Serapan Anggaran dan Hasil Kunjungan Kerja',
+        'location' => 'Kementerian Pertanian',
+        'description' => 'Serapan Anggaran dan Hasil Kunjungan Kerja',
+        ]);
+
+        DB::table('workmeeting')->insert([
+        'uuid' => '1e7cb03f-03a6-4aca-8b37-c60ab4d20d0d',
+        'date' => '2016-05-26',
+        'name' => 'Rapat Kerja Pemantauan Dan Peninjauan UU NO 18 Tahun 2012 Tentang Pangan',
+        'location' => 'Kementerian Pertanian',
+        'description' => 'Rapat Kerja Pemantauan Dan Peninjauan UU NO 18 Tahun 2012 Tentang Pangan',
+        ]);
+
+        DB::table('workmeeting')->insert([
         'uuid' => '241db408-d1d0-4685-b6f3-06cb51d3a007',
         'date' => '2016-06-08',
         'name' => 'Rapat Kerja Menteri Pertanian RI Dengan Komisi IV DPR RI RKA-KL Dalam RUU APBNP 2016 Dan Persiapan Ramadhan Dan Idul Fitri',
@@ -29,9 +53,17 @@ class WorkmeetingTableSeeder extends Seeder
         ]);
 
         DB::table('workmeeting')->insert([
+        'uuid' => 'f8e5bb48-9e4c-4cdc-868f-42e623306e41',
+        'date' => '2016-06-21',
+        'name' => 'Rapat Badan Anggaran Perubahan Perubahan Alokasi Tahun Anggaran 2016',
+        'location' => 'Kementerian Pertanian',
+        'description' => 'Perubahan Perubahan Alokasi Tahun Anggaran 2016',
+        ]);
+
+        DB::table('workmeeting')->insert([
         'uuid' => '39345818-edfb-468f-a154-cf6e72201edf',
         'date' => '2016-06-21',
-        'name' => 'Rapat Kerja Menteri Pertanian RI Dengan Komite II DPR RI Pelaksanaan UU NO. 39 Tahun 2014 Dan Kesiapan Pemerintah Menjelang Hari Raya Idul Fitri',
+        'name' => 'Rapat Kerja Menteri Pertanian RI Dengan Komite II DPD RI Pelaksanaan UU NO. 39 Tahun 2014 Dan Kesiapan Pemerintah Menjelang Hari Raya Idul Fitri',
         'location' => 'Kementerian Pertanian',
         'description' => 'Pembahasan Pelaksanaan UU NO. 39 Tahun 2014 Dan Kesiapan Pemerintah Menjelang Hari Raya Idul Fitri',
         ]);

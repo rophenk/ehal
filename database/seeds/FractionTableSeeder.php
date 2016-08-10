@@ -51,5 +51,9 @@ class FractionTableSeeder extends Seeder
         DB::table('fraction')->insert([
         'name' => 'Fraksi Partai Hati Nurani Rakyat'
         ]);
+
+        DB::table('fraction')->insert([
+        'name' => 'Fraksi Test'
+        ]);
     }
 }
