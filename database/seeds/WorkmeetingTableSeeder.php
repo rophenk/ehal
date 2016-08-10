@@ -37,7 +37,7 @@ class WorkmeetingTableSeeder extends Seeder
         ]);
 
         DB::table('workmeeting')->insert([
-        'uuid' => '241db408-d1d0-4685-b6f3-06cb51d3a007',
+        'uuid' => '259b8276-27dd-4165-990b-2695e7260416',
         'date' => '2016-06-08',
         'name' => 'Rapat Kerja Menteri Pertanian RI Dengan Komisi IV DPR RI RKA-KL Dalam RUU APBNP 2016 Dan Persiapan Ramadhan Dan Idul Fitri',
         'location' => 'Kementerian Pertanian',

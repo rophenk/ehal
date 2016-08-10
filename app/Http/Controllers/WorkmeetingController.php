@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 use App\Models\WorkmeetingModel;
+use App\Models\WorkmeetingDocumentModel;
 use App\Models\WorkmeetingQuestionModel;
 use DB;
 
@@ -86,10 +87,14 @@ class WorkmeetingController extends Controller
     {
         $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)
                        ->first();
+        $workmeeting_document = WorkmeetingDocumentModel::where('workmeeting_id', $workmeeting->id)
+                       ->get();
         $explode_input_date = explode("-",$workmeeting["date"]);
         $date = $explode_input_date[2]."-".$explode_input_date[1]."-".$explode_input_date[0];
+
+
         
-        return view('halo.publicview-workmeeting', ['workmeeting' => $workmeeting, 'date' => $date]);
+        return view('halo.publicview-workmeeting', ['workmeeting' => $workmeeting, 'workmeeting_document' => $workmeeting_document, 'date' => $date]);
     }
 
     /**

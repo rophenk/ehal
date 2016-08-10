@@ -15,11 +15,13 @@ class CreateWorkmeetingDocumentTable extends Migration
         Schema::create('workmeeting_document', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('uuid', 36);
             $table->integer('workmeeting_id')->unsigned()->nullable();
             $table->foreign('workmeeting_id')
                   ->references('id')->on('workmeeting')
                   ->onDelete('cascade');
-            $table->string('url')->nullable();
+            $table->text('title')->nullable();
+            $table->text('url')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
         });

@@ -24,12 +24,22 @@
                                             <a href="javascript:;">{{ $date }}</a>
                                         </div>
                                     </div>
-                                    <div class="blog-single-img">
-                                        <img src="../assets/pages/img/background/4.jpg" /> </div>
+                                    <!--<div class="blog-single-img">
+                                        <img src="../assets/pages/img/background/4.jpg" /> </div>-->
                                     <div class="blog-single-desc">
+                                    <p>
                                         {{ $workmeeting->description }}
+                                    </p>
+                                    <hr />
+                                        <h5>Dokumen</h5>
+                                        <ul>
+                                        @forelse($workmeeting_document as $document)
+                                            <li><a href="{{ $document->url }}" target="_blank">{{ $document->title }}</a></li>
+                                        @empty
+                                        @endforelse
+                                        </ul>
                                     </div>
-                                    <div class="blog-single-foot">
+                                    <!--<div class="blog-single-foot">
                                         <ul class="blog-post-tags">
                                             <li class="uppercase">
                                                 <a href="javascript:;">Bootstrap</a>
@@ -41,7 +51,7 @@
                                                 <a href="javascript:;">HTML</a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div
