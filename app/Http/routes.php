@@ -42,6 +42,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/delete-workmeeting/{uuid?}', 'WorkmeetingController@destroy');
 	Route::get('/attachment-workmeeting/{uuid?}', 'HomeController@dashboard');
 	Route::get('/show-workmeeting/{uuid?}', 'WorkmeetingController@show');
+	Route::get('/workmeeting-questions/{uuid?}', 'WorkmeetingController@questions');
 
 	/* Speakers Routes */
 	Route::get('/speakers-list', 'SpeakersController@index');

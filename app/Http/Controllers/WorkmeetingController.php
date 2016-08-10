@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 use App\Models\WorkmeetingModel;
+use App\Models\WorkmeetingQuestionModel;
 use DB;
 
 class WorkmeetingController extends Controller
@@ -158,5 +159,25 @@ class WorkmeetingController extends Controller
 
         $message = 'deleted';
         return view('halo.workmeeting-add', ['message' => $message, 'workmeeting' => $workmeeting, 'user' => $user]);
+    }
+
+    public function questions(Request $request)
+    {
+        $user       = $request->user();
+        $uuid       = $request->uuid;
+
+        $workmeeting = WorkmeetingModel::where('uuid', $uuid)->first();
+        $workmeeting_id = $workmeeting->id;
+        $workmeeting_question = DB::table('workmeeting_question')
+                                ->leftJoin('speakers', 'speakers.id', '=', 'workmeeting_question.speakers_id')
+                                ->leftJoin('fraction', 'fraction.id', '=', 'speakers.fraction_id')
+                                ->select('workmeeting_question.*', 'speakers.name as name', 'fraction.name as fraction')
+                                ->where('workmeeting_id', '=', $workmeeting_id)
+                                ->orderBy('workmeeting_question.id', 'asc')
+                                ->get();
+
+        $message = '';
+        //return $workmeeting_question;
+        return view('halo.workmeeting-questions', ['message' => $message, 'workmeeting' => $workmeeting, 'user' => $user, 'workmeeting_question' => $workmeeting_question]);
     }
 }

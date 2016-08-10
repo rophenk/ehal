@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FractionTableSeeder::class);
         $this->call(SpeakersTableSeeder::class);
         $this->call(AssistantTableSeeder::class);
+        $this->call(WorkmeetingQuestionSeeder::class);
     }
 }

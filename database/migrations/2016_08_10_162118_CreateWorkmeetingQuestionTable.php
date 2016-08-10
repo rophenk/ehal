@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorkmeetingQuestionTable.php extends Migration
+class CreateWorkmeetingQuestionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,6 +19,10 @@ class CreateWorkmeetingQuestionTable.php extends Migration
             $table->foreign('workmeeting_id')
                   ->references('id')->on('workmeeting')
                   ->onDelete('cascade');
+            $table->integer('speakers_id')->unsigned()->nullable();
+            $table->foreign('speakers_id')
+                  ->references('id')->on('speakers')
+                  ->onDelete('set null');
             $table->text('question')->nullable();
             $table->text('answer')->nullable();
             $table->timestamp('created_at');

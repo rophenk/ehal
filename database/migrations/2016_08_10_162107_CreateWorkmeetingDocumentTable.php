@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorkmeetingDocumentTable.php extends Migration
+class CreateWorkmeetingDocumentTable extends Migration
 {
     /**
      * Run the migrations.

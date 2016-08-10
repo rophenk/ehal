@@ -42,11 +42,6 @@
                                         <span class="title">Tabel Rapat Kerja</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="/workmeeting-questions" class="nav-link ">
-                                        <span class="title">Pertanyaan Rapat Kerja</span>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         <li class="nav-item active open">
