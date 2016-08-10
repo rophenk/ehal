@@ -41,11 +41,33 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/edit-workmeeting/{uuid?}', 'WorkmeetingController@update');
 	Route::get('/delete-workmeeting/{uuid?}', 'WorkmeetingController@destroy');
 	Route::get('/attachment-workmeeting/{uuid?}', 'HomeController@dashboard');
+	Route::get('/show-workmeeting/{uuid?}', 'WorkmeetingController@show');
 
 	/* Speakers Routes */
 	Route::get('/speakers-list', 'SpeakersController@index');
 	Route::get('/speaker-view/{uuid?}', 'SpeakersController@show');
 
 	Route::get('/alerts', 'WorkmeetingController@alerts');
+
+	/* Email Routes */
+	Route::get('/send', 'EmailController@send');
+
+	/*Route::get('sendemail', function () {
+
+	    $data = array(
+	        'name' => "Hubungan Antar Lembaga - Kementan",
+	    );
+
+	    Mail::send('emails.welcome', $data, function ($message) {
+
+	        $message->from('hal@pertanian.go.id', 'Hubungan Antar Lembaga - Kementerian Pertanian');
+
+	        $message->to('rophenk@gmail.com')->subject('Learning Laravel test email');
+
+	    });
+
+	    return "Your email has been sent successfully";
+
+	});*/
 });
 

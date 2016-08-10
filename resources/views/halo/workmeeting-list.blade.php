@@ -94,7 +94,7 @@
                                                             </td>
                                                             <td class="left"> {{ $workmeeting->id }}</td>
                                                             <td width="40%" class="left">
-                                                                <a href="#"> {{ $workmeeting->name }} </a>
+                                                                <a target="_blank" href="/show-workmeeting/{{ $workmeeting->uuid }}"> {{ $workmeeting->name }} </a>
                                                             </td>
                                                             <td width="20%" class="left"> {{ $workmeeting->date }} </td>
                                                             <td width="20%" class="left"> {{ $workmeeting->location }} </td>

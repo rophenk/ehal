@@ -81,9 +81,14 @@ class WorkmeetingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)
+                       ->first();
+        $explode_input_date = explode("-",$workmeeting["date"]);
+        $date = $explode_input_date[2]."-".$explode_input_date[1]."-".$explode_input_date[0];
+        
+        return view('halo.publicview-workmeeting', ['workmeeting' => $workmeeting, 'date' => $date]);
     }
 
     /**
@@ -105,7 +110,7 @@ class WorkmeetingController extends Controller
 
         $message = '';
 
-        return view('halo.workmeeting-edit', ['user' => $user, 'workmeeting' => $workmeeting, 'date' => $date, 'message' => $message,]);
+        return view('halo.workmeeting-edit', ['user' => $user, 'workmeeting' => $workmeeting, 'date' => $date, 'message' => $message]);
     }
 
     /**
