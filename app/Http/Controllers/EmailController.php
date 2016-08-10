@@ -34,7 +34,8 @@ class EmailController extends Controller
 	        'date' => $date
 	    );
 
-        Mail::queue('emails.template', $data, function ($message) use ($speakers, $workmeeting) {
+        //Mail::queue('emails.template', $data, function ($message) use ($speakers, $workmeeting) {
+        Mail::send('emails.template', $data, function ($message) use ($speakers, $workmeeting) {
 
 	        $message->from('hal@pertanian.go.id', 'Hubungan Antar Lembaga - Kementerian Pertanian');
 
