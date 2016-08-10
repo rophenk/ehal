@@ -20,7 +20,6 @@ class CreateWorkmeetingDocumentTable.php extends Migration
                   ->references('id')->on('workmeeting')
                   ->onDelete('cascade');
             $table->string('url')->nullable();
-            $table->text('description')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
         });
