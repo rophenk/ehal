@@ -53,7 +53,7 @@ Route::group(['middleware' => ['web']], function () {
 	/* Email Routes */
 	Route::get('/send', 'EmailController@send');
 
-	/*Route::get('sendemail', function () {
+	Route::get('sendemail', function () {
 
 	    $data = array(
 	        'name' => "Hubungan Antar Lembaga - Kementan",
@@ -69,6 +69,6 @@ Route::group(['middleware' => ['web']], function () {
 
 	    return "Your email has been sent successfully";
 
-	});*/
+	});
 });
 
