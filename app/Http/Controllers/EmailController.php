@@ -45,4 +45,12 @@ class EmailController extends Controller
         return "Your email has been sent successfully";
         //return view('emails.template', ['speakers' => $speakers, 'workmeeting' => $workmeeting, 'date' => $date]);
     }
+
+    public function testMail()
+    {
+
+        //sending email with the php mail()
+        mail('rophenk@gmail.com', 'Test Mail dengan PHP native', 'testing');
+
+    }
 }

@@ -52,6 +52,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	/* Email Routes */
 	Route::get('/send', 'EmailController@send');
+	Route::get('/testmail', 'EmailController@testMail');
 
 	Route::get('sendemail', function () {
 
