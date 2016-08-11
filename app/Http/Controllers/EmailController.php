@@ -13,7 +13,7 @@ class EmailController extends Controller
     public function send(Request $request)
     {
     	
-    	$request->speaker_uuid = 'e56225b6-b1be-4e65-86c2-20543222b939';
+    	$request->speaker_uuid = '7f223690-44e5-c07a-bdaf-dfab8b0a8fb3';
     	$request->workmeeting_uuid = '241db408-d1d0-4685-b6f3-06cb51d3a007';
 
     	$speakers = SpeakersModel::where('uuid', $request->speaker_uuid)->first();
