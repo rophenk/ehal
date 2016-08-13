@@ -27,7 +27,7 @@ Route::group(['middleware' => ['web']], function () {
 	    return view('halo.login');
 	});
 
-	Route::get('/home', 'HomeController@index');
+	Route::get('/home', 'HomeController@dashboard');
 	Route::get('/dashboard', 'HomeController@dashboard');
 	
 
