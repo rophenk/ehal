@@ -32,9 +32,13 @@ class SpeakersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $user       = $request->user();
+        $fraction   = FractionModel::all();
+        $message    = $request->message;
+
+        return view('halo.speaker-add', ['message' => $message, 'user' => $user, 'fraction' => $fraction]);
     }
 
     /**
@@ -45,7 +49,24 @@ class SpeakersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user       = $request->user();
+
+        $speaker = new SpeakersModel;
+        $speaker->uuid = Uuid::uuid4();
+        $speaker->fraction_id = $request->fraction_id;
+        $speaker->name = $request->name;
+        $speaker->email = $request->email;
+        $speaker->fraction_leader = $request->fraction_leader;
+        $speaker->photo = NULL;
+        $speaker->save();
+
+        if($speaker->save() == TRUE) {
+            $message = 'success';
+        } else {
+            $message = 'failed';
+        }
+
+        return view('halo.workmeeting-add', ['message' => $message, 'user' => $user]);
     }
 
     /**

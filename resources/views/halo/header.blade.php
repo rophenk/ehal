@@ -29,7 +29,7 @@
                                     <i class="icon-calendar"></i> + Tambah Rapat Kerja </a>
                             </li>
                             <li>
-                                <a href="javascript:;">
+                                <a href="/add-speaker#tab_1_3">
                                     <i class="icon-user"></i> + Tambah Anggota </a>
                             </li>
                         </ul>

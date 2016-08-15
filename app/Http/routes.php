@@ -47,6 +47,8 @@ Route::group(['middleware' => ['web']], function () {
 	/* Speakers Routes */
 	Route::get('/speakers-list', 'SpeakersController@index');
 	Route::get('/speaker-view/{uuid?}', 'SpeakersController@show');
+	Route::get('/add-speaker', 'SpeakersController@create');
+	Route::post('/add-speaker', 'SpeakersController@store');
 
 	Route::get('/alerts', 'WorkmeetingController@alerts');
 

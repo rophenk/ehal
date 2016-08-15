@@ -82,30 +82,8 @@
                                     <div class="caption">
                                         <i class="icon-directions font-green hide"></i>
                                         <span class="caption-subject bold font-dark uppercase "> Rapat Kerja</span>
-                                        <span class="caption-helper">Linimasa</span>
+                                        <span class="caption-helper">Terbaru</span>
                                     </div>
-                                    <!--<div class="actions">
-                                        <div class="btn-group">
-                                            <a class="btn blue btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Actions
-                                                <i class="fa fa-angle-down"></i>
-                                            </a>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:;"> Action 1</a>
-                                                </li>
-                                                <li class="divider"> </li>
-                                                <li>
-                                                    <a href="javascript:;">Action 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">Action 3</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">Action 4</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>-->
                                 </div>
                                 <div class="portlet-body">
                                     <div class="cd-horizontal-timeline mt-timeline-horizontal">
@@ -160,8 +138,18 @@
                                             }
                                              ?>
 <li<?php echo $selected; ?> data-date="{{ $value->date_data }}">
-                                                    <div>
-                                                        <strong class="mt-content-title">{{ $value->name }}</strong>
+                                                    <div class="mt-title">
+                                                        <h2 class="mt-content-title">{{ $value->name }}</h2>
+                                                    </div>
+
+                                                    <div class="mt-author">
+                                                        <div class="mt-avatar">
+                                                            <img src="{{URL::asset('img/logo.png')}}" />
+                                                        </div>
+                                                        <div class="mt-author-name">
+                                                            <a href="javascript:;" class="font-blue-madison">{{ $user->name }}</a>
+                                                        </div>
+                                                        <div class="mt-author-datetime font-grey-mint">{{ $value->date_author}}</div>
                                                     </div>
                                                     <div class="clearfix"></div>
                                                     <div class="mt-content border-grey-steel">
@@ -178,6 +166,58 @@
                                             </ol>
                                         </div>
                                         <!-- .events-content -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-bubble font-dark hide"></i>
+                                        <span class="caption-subject font-hide bold uppercase">Anggota DPR</span>
+                                    </div>
+                                    <div class="actions">
+                                        <div class="btn-group">
+                                            <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Actions
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                    <a href="/add-speaker#tab_1_3"> Tambah </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/speakers-list"> Daftar Lengkap </a>
+                                                </li>
+                                                <li class="divider"> </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="row">
+                                     @forelse($random_speakers as $random)
+                                        <div class="col-md-4">
+                                            <!--begin: widget 1-1 -->
+                                           
+                                            <div class="mt-widget-1">
+                                                <div class="mt-icon">
+                                                    <a href="speaker-view/{{$random->uuid}}">
+                                                        <i class="icon-plus"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="mt-img">
+                                                    <img src="{{ $random->photo }}" width="80px"> </div>
+                                                <div class="mt-body">
+                                                    <h3 class="mt-username">{{ $random->name }}</h3>
+                                                    <p class="mt-user-title"> {{ $random->fraction_name }} </p>
+                                                </div>
+                                            </div>
+                                            <!--end: widget 1-1 -->
+                                        </div>
+
+                                            @empty
+                                            @endforelse
                                     </div>
                                 </div>
                             </div>

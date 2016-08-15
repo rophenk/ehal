@@ -54,10 +54,21 @@ class HomeController extends Controller
                      ->first();
 
         $workmeeting_timeline = DB::table('workmeeting')
-                     ->select(DB::raw('id, uuid, name, description, DATE_FORMAT(date,"%d %b") AS date_display, DATE_FORMAT(date,"%d/%m/%Y") AS date_data'))
+                     ->select(DB::raw('id, uuid, name, description, DATE_FORMAT(date,"%d %b") AS date_display, DATE_FORMAT(date,"%d %M %Y") AS date_author, DATE_FORMAT(date,"%d/%m/%Y") AS date_data'))
+                     ->orderBy('id', 'desc')
+                     ->orderBy('date', 'asc')
+                     ->take(5)
                      ->get();
 
-        return view('halo.dashboard', ['user' => $user, 'workmeeting' => $workmeeting, 'speakers' => $speakers, 'workmeeting_question' => $workmeeting_question, 'workmeeting_document' => $workmeeting_document, 'workmeeting_timeline' => $workmeeting_timeline]);
+        $random_speakers = DB::table('speakers')
+                     ->join('fraction', 'fraction.id', '=', 'speakers.fraction_id')
+                     ->select('speakers.*', 'fraction.name AS fraction_name')
+                     ->inRandomOrder()
+                     ->take(3)
+                     ->get();
+
+        //var_dump($workmeeting_timeline);die();
+        return view('halo.dashboard', ['user' => $user, 'workmeeting' => $workmeeting, 'speakers' => $speakers, 'random_speakers' => $random_speakers, 'workmeeting_question' => $workmeeting_question, 'workmeeting_document' => $workmeeting_document, 'workmeeting_timeline' => $workmeeting_timeline]);
 
 
     }
