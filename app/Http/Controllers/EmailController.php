@@ -114,11 +114,11 @@ class EmailController extends Controller
             'workmeeting_description' => $workmeeting->description, 
             'date' => $date
         );
-        /* Direct Sending Email
-        Mail::send('emails.template', $data, function ($message) use ($speakers_email, $assistant_email, $workmeeting) { */
+        /* Direct Sending Email*/
+        Mail::send('emails.template', $data, function ($message) use ($speakers_email, $assistant_email, $workmeeting) { 
 
-        /* Queue Sending The Email */
-        Mail::queue('emails.template', $data, function ($message) use ($speakers_email, $assistant_email, $workmeeting) {
+        /* Queue Sending The Email 
+        Mail::queue('emails.template', $data, function ($message) use ($speakers_email, $assistant_email, $workmeeting) {*/
 
             $message->from('hal@pertanian.go.id', 'Hubungan Antar Lembaga - Kementerian Pertanian');
 
