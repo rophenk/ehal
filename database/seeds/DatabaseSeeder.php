@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SpeakersTableSeeder::class);
         $this->call(AssistantTableSeeder::class);
         $this->call(WorkmeetingQuestionSeeder::class);
+        $this->call(WorkmeetingDocumentSeeder::class);
     }
 }

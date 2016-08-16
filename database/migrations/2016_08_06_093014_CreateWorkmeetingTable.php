@@ -16,6 +16,7 @@ class CreateWorkmeetingTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('uuid', 36);
+            $table->index('uuid');
             $table->date('date');
             $table->string('name');
             $table->string('location')->nullable();

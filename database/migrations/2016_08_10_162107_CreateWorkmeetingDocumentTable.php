@@ -16,6 +16,7 @@ class CreateWorkmeetingDocumentTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('uuid', 36);
+            $table->index('uuid');
             $table->integer('workmeeting_id')->unsigned()->nullable();
             $table->foreign('workmeeting_id')
                   ->references('id')->on('workmeeting')
