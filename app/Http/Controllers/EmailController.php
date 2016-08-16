@@ -7,9 +7,186 @@ use Mail;
 use App\Http\Requests;
 use App\Models\SpeakersModel;
 use App\Models\WorkmeetingModel;
+use DB;
 
 class EmailController extends Controller
 {
+    
+    public function form(Request $request)
+    {
+        $user       = $request->user();
+        $uuid       = $request->uuid;
+        $message    = $request->message;
+
+        $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)
+                       ->first();
+        $fpdip      = ['fraction_id' => '1', 'fraction_leader' => NULL];
+        $fpg        = ['fraction_id' => '2', 'fraction_leader' => NULL];
+        $fgerindra  = ['fraction_id' => '3', 'fraction_leader' => NULL];
+        $fpd        = ['fraction_id' => '4', 'fraction_leader' => NULL];
+        $fpan       = ['fraction_id' => '5', 'fraction_leader' => NULL];
+        $fpkb       = ['fraction_id' => '6', 'fraction_leader' => NULL];
+        $fpks       = ['fraction_id' => '7', 'fraction_leader' => NULL];
+        $fppp       = ['fraction_id' => '8', 'fraction_leader' => NULL];
+        $fpnasdem   = ['fraction_id' => '9', 'fraction_leader' => NULL];
+        $fphanura   = ['fraction_id' => '10', 'fraction_leader' => NULL];
+        $fptest     = ['fraction_id' => '11', 'fraction_leader' => NULL];
+
+        $speakers_fraction_leader   = SpeakersModel::where('fraction_leader', 'yes')->get();
+        $speakers_fpdip             = SpeakersModel::where($fpdip)->get();
+        $speakers_fpg               = SpeakersModel::where($fpg)->get();
+        $speakers_fgerindra         = SpeakersModel::where($fgerindra)->get();
+        $speakers_fpd               = SpeakersModel::where($fpd)->get();
+        $speakers_fpan              = SpeakersModel::where($fpan)->get();
+        $speakers_fpkb              = SpeakersModel::where($fpkb )->get();
+        $speakers_fpks              = SpeakersModel::where($fpks)->get();
+        $speakers_fppp              = SpeakersModel::where($fppp)->get();
+        $speakers_fpnasdem          = SpeakersModel::where($fpnasdem)->get();
+        $speakers_fphanura          = SpeakersModel::where($fphanura)->get();
+        $speakers_fptest            = SpeakersModel::where($fptest)->get();
+
+        return view('halo.email-form', [
+            'workmeeting'               => $workmeeting, 
+            'speakers_fraction_leader'  => $speakers_fraction_leader, 
+            'speakers_fpdip'            => $speakers_fpdip, 
+            'speakers_fpg'              => $speakers_fpg, 
+            'speakers_fgerindra'        => $speakers_fgerindra, 
+            'speakers_fpd'              => $speakers_fpd, 
+            'speakers_fpan'             => $speakers_fpan, 
+            'speakers_fpkb'             => $speakers_fpkb, 
+            'speakers_fpks'             => $speakers_fpks, 
+            'speakers_fppp'             => $speakers_fppp, 
+            'speakers_fpnasdem'         => $speakers_fpnasdem, 
+            'speakers_fphanura'         => $speakers_fphanura, 
+            'speakers_fptest'           => $speakers_fptest, 
+            'message'                   => $message, 
+            'user'                      => $user
+            ]);
+
+    }
+
+    public function process(Request $request)
+    {
+        $user           = $request->user();
+        $uuid           = $request->uuid;
+        $message        = $request->message;    
+        $speakers_id    = $request->speakers_id;
+
+        $speakers_email_address = array();
+        $assistant_email_address = array();
+
+        $in = join(',', array_fill(0, count($speakers_id), '?'));
+        
+        $speakers_email = DB::select('SELECT `id`, `email` FROM `speakers` WHERE `id` IN ('.$in.')', $speakers_id);
+
+        /* get speakers email */
+        foreach ($speakers_email as $email) {
+            if(!empty($email))
+            {
+                $speakers_email_address[] = $email;
+            }
+        }
+        
+        $assistant_email = DB::select('SELECT `email1`, `email2` FROM `assistant` WHERE `speakers_id` IN ('.$in.') AND `email1` IS NOT NULL', $speakers_id);
+        
+        /* get assistant email */
+        foreach ($assistant_email as $email_assistant) {
+            if(!empty($email_assistant->email1))
+            {
+                $assistant_email_address['email'][] = $email_assistant->email1;
+            }
+
+            if(!empty($email_assistant->email2))
+            {
+                $assistant_email_address['email'][] = $email_assistant->email2;
+            }
+        }
+
+        /* get workmeeting name */
+        $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)->first();
+        $explode_input_date = explode("-",$workmeeting->date);
+        $date = $explode_input_date[2]."-".$explode_input_date[1]."-".$explode_input_date[0];
+
+        $data = array(
+            'workmeeting_uuid' => $workmeeting->uuid,
+            'workmeeting_name' => $workmeeting->name, 
+            'workmeeting_location' => $workmeeting->location,
+            'workmeeting_description' => $workmeeting->description, 
+            'date' => $date
+        );
+        /* Direct Sending Email
+        Mail::send('emails.template', $data, function ($message) use ($speakers_email, $assistant_email, $workmeeting) { */
+
+        /* Queue Sending The Email */
+        Mail::queue('emails.template', $data, function ($message) use ($speakers_email, $assistant_email, $workmeeting) {
+
+            $message->from('hal@pertanian.go.id', 'Hubungan Antar Lembaga - Kementerian Pertanian');
+
+            foreach ($speakers_email as $email) {
+                $message->to($email->email);
+            }
+
+            foreach ($assistant_email as $assistant_email) {
+                if(!empty($assistant_email->email1))
+                {
+                    $message->cc($assistant_email->email1);
+                }
+                if(!empty($assistant_email->email2))
+                {
+                    $message->cc($assistant_email->email2);
+                }
+            }
+
+            $message->subject('[HALO-KEMENTAN]'.$workmeeting['name']);
+
+        });
+
+        /* save sending email history log to database */
+
+        foreach ($speakers_email as $speakersmail) {
+
+            $sespri_email = DB::select('SELECT `email1`, `email2` FROM `assistant` WHERE `speakers_id`= '.$speakersmail->id.' AND `email1` IS NOT NULL');
+
+            if(!empty($sespri_email))
+            {
+                $sespri_address = $sespri_email;
+            } else {
+                $sespri_address = NULL;
+            }
+
+            foreach ($sespri_email as $email_sespri) {
+                if(!empty($email_sespri->email1))
+                {
+                    $sespri_email_address['email'][] = $email_sespri->email1;
+                }
+
+                if(!empty($email_sespri->email2))
+                {
+                    $sespri_email_address['email'][] = $email_sespri->email2;
+                }
+            }
+
+            DB::table('email_log')->insert(
+                [
+                    'workmeeting_id'  => $workmeeting->id, 
+                    'speakers_id'     => $speakersmail->id,
+                    'assistant_email' => json_encode($sespri_address)
+                ]
+            );
+        }
+
+        $message = "email_sent";
+
+        return view('halo.email-sent', [
+            'speakers_email'    => $speakers_email,
+            'assistant_email'   => $assistant_email, 
+            'workmeeting'       => $workmeeting,
+            'message'           => $message, 
+            'date'              => $date,
+            'user'              => $user
+            ]);
+    }
+
     public function send(Request $request)
     {
     	

@@ -61,6 +61,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/edit-question/{id?}/{uuid?}', 'QuestionsController@update');
 
 	/* Email Routes */
+	Route::get('/form-email/{uuid?}', 'EmailController@form');
+	Route::post('/process-email/{uuid?}', 'EmailController@process');
+
 	Route::get('/send', 'EmailController@send');
 	Route::get('/testmail', 'EmailController@testMail');
 

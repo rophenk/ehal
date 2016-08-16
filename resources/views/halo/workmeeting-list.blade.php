@@ -112,6 +112,10 @@
                                                                             <a href="/workmeeting-questions/{{ $workmeeting->uuid }}">
                                                                                 <i class="fa fa-question"></i>Pertanyaan</a>
                                                                         </li>
+                                                                        <li>
+                                                                            <a href="/form-email/{{ $workmeeting->uuid }}">
+                                                                                <i class="fa fa-envelope"></i>Kirim Via Email</a>
+                                                                        </li>
                                                                     </ul>
                                                                 </div>
                                                             </td>

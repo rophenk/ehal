@@ -50,7 +50,7 @@
                                             </p>
                                             <p class="todo-inline todo-float-r">Kirim
                                                 <!--<a class="todo-add-button" href="#todo-members-modal" data-toggle="modal">+</a>-->
-                                                <a class="todo-add-button" href="#" data-toggle="modal">+</a>
+                                                <a class="todo-add-button" href="/form-email/{{ $workmeeting->uuid }}" >+</a>
                                             </p>
                                         </div>
                                     </li>
