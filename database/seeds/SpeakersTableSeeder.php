@@ -398,7 +398,7 @@ class SpeakersTableSeeder extends Seeder
 	        'uuid' => '3d4e4fad-db10-4c9f-8aee-f3c0edad8693',
 	        'fraction_id' => '9',
 	        'name' => 'H. Hamdani, S.Ip, M.Sos',
-	        'photo' => 'http://halo.setjen.pertanian.go.id/halo/speakers/3d4e4fad-db10-4c9f-8aee-f3c0edad8693/hamdani.jpg',
+	        'photo' => 'http://halo.setjen.pertanian.go.id/halo/speakers/3d4e4fad-db10-4c9f-8aee-f3c0edad8693/samsudin-siregar.jpg',
         ]);
 
         DB::table('speakers')->insert([

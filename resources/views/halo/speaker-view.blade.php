@@ -44,17 +44,6 @@
                                                             <li>
                                                                 <a href="javascript:;"> Sespri / TA </a>
                                                             </li>
-                                                            <!--<li>
-                                                                <a href="javascript:;"> Messages
-                                                                    <span> 3 </span>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"> Friends </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"> Settings </a>
-                                                            </li>-->
                                                         </ul>
                                                     </div>
                                                     <div class="col-md-9">
@@ -62,57 +51,14 @@
                                                             <div class="col-md-8 profile-info">
                                                                 <h1 class="font-green sbold uppercase">{{ $speakers->name }}</h1>
                                                                 <p> {{ $speakers->fraction->name }} </p>
-                                                                <!--<p>
-                                                                    <a href="javascript:;"> www.mywebsite.com </a>
-                                                                </p>-->
                                                                 <ul class="list-inline">
                                                                 <?php if(!empty($speakers->email)) { ?>
                                                                     <li>
                                                                         <i class="icon-envelope-open"></i> {{ $speakers->email }} 
                                                                     </li>
                                                                 <?php } ?>
-                                                                    <!--<li>
-                                                                        <i class="fa fa-calendar"></i> 18 Jan 1982 </li>
-                                                                    <li>
-                                                                        <i class="fa fa-briefcase"></i> Design </li>
-                                                                    <li>
-                                                                        <i class="fa fa-star"></i> Top Seller </li>
-                                                                    <li>
-                                                                        <i class="fa fa-heart"></i> BASE Jumping </li>-->
                                                                 </ul>
                                                             </div>
-                                                            <!--end col-md-8-->
-                                                            <!--<div class="col-md-4">
-                                                                <div class="portlet sale-summary">
-                                                                    <div class="portlet-title">
-                                                                        <div class="caption font-red sbold"> Sales Summary </div>
-                                                                        <div class="tools">
-                                                                            <a class="reload" href="javascript:;"> </a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="portlet-body">
-                                                                        <ul class="list-unstyled">
-                                                                            <li>
-                                                                                <span class="sale-info"> TODAY SOLD
-                                                                                    <i class="fa fa-img-up"></i>
-                                                                                </span>
-                                                                                <span class="sale-num"> 23 </span>
-                                                                            </li>
-                                                                            <li>
-                                                                                <span class="sale-info"> WEEKLY SALES
-                                                                                    <i class="fa fa-img-down"></i>
-                                                                                </span>
-                                                                                <span class="sale-num"> 87 </span>
-                                                                            </li>
-                                                                            <li>
-                                                                                <span class="sale-info"> TOTAL SOLD </span>
-                                                                                <span class="sale-num"> 2377 </span>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>-->
-                                                            <!--end col-md-4-->
                                                         </div>
                                                         <!--end row-->
                                                         <div class="tabbable-line tabbable-custom-profile">

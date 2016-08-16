@@ -48,7 +48,6 @@
                                                                         <label class="control-label">Email</label>
                                                                         <input type="text" name="email" placeholder="alamat@email.com" class="form-control" /> </div>
                                                                     <div class="form-group">
-                                                                    <div class="form-group">
                                                                         <label class="control-label">Ketua Fraksi</label>
                                                                         <div class="mt-radio-inline">
                                                                             <label class="mt-radio">
@@ -96,9 +95,9 @@
 @section('page-scripts')
         <script src="{{URL::asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}" type="text/javascript"></script>
         <?php if($message == "success") { ?>
-<script src="{{URL::asset('assets/pages/scripts/ui-alerts-api.js')}}" type="text/javascript"></script>
-<?php } elseif ($message == "deleted") { ?>
-<script src="{{URL::asset('assets/pages/scripts/ui-alerts-api-deletemsg.js')}}" type="text/javascript"></script>
-<?php } ?>
-        
+        <script src="{{URL::asset('assets/pages/scripts/ui-alerts-api.js')}}" type="text/javascript"></script>
+        <?php } elseif ($message == "deleted") { ?>
+        <script src="{{URL::asset('assets/pages/scripts/ui-alerts-api-deletemsg.js')}}" type="text/javascript"></script>
+        <?php } ?>
+                
 @endsection

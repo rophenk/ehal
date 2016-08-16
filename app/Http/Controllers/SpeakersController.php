@@ -82,8 +82,9 @@ class SpeakersController extends Controller
         $speakers_id = $speakers->id;
         $assistant = AssistantModel::where('speakers_id', $speakers->id)->get();
 
+        $message = '';
         //return view('halo.speaker-view', ['speakers' => $speakers, 'user' => $user]);
-        return view('halo.speaker-view-2', ['speakers' => $speakers, 'assistant' => $assistant, 'user' => $user]);
+        return view('halo.speaker-view-2', ['message' => $message, 'speakers' => $speakers, 'assistant' => $assistant, 'user' => $user]);
     }
 
     /**
@@ -104,9 +105,24 @@ class SpeakersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user       = $request->user();
+        SpeakersModel::where('uuid',$request->uuid)
+        ->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'fraction_leader' => $request->fraction_leader
+            ]);
+
+        $message = 'success';
+        $uuid = $request->uuid;
+
+        $speakers   = SpeakersModel::where('uuid', $request->uuid)->first();
+        $speakers_id = $speakers->id;
+        $assistant = AssistantModel::where('speakers_id', $speakers->id)->get();
+
+        return view('halo.speaker-view-2', ['message' => $message, 'speakers' => $speakers, 'assistant' => $assistant, 'user' => $user]);
     }
 
     /**

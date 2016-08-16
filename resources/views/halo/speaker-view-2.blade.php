@@ -195,32 +195,39 @@
                                                     <a data-toggle="tab" href="#tab_2-2">
                                                         <i class="fa fa-picture-o"></i> Change Avatar </a>
                                                 </li>
-                                                <!--<li>
-                                                    <a data-toggle="tab" href="#tab_3-3">
-                                                        <i class="fa fa-lock"></i> Change Password </a>
-                                                </li>
-                                                <li>
-                                                    <a data-toggle="tab" href="#tab_4-4">
-                                                        <i class="fa fa-eye"></i> Privacity Settings </a>
-                                                </li>-->
                                             </ul>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="tab-content">
                                                 <div id="tab_1-1" class="tab-pane active">
-                                                    <form role="form" action="#">
+                                                    <form role="form" method="post" action="/edit-speaker/{{$speakers->uuid}}">
                                                         <div class="form-group">
                                                             <label class="control-label">First Name</label>
-                                                            <input type="text" value="{{ $speakers->name }}" placeholder="John" class="form-control" /> </div>
+                                                            <input type="text" value="{{ $speakers->name }}" name="name" placeholder="John" class="form-control" /> </div>
                                                         <div class="form-group">
                                                                         <label class="control-label">Email</label>
-                                                                        <input type="text" value="{{ $speakers->email }}" placeholder="alamat@email.com" class="form-control" /> </div>
+                                                                        <input type="text" value="{{ $speakers->email }}" name="email" placeholder="alamat@email.com" class="form-control" /> </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label">Ketua Fraksi</label>
+                                                            <div class="mt-radio-inline">
+                                                                <label class="mt-radio">
+                                                                    <input type="radio" name="fraction_leader" id="fraction_leader" value="yes" @if ($speakers->fraction_leader === "yes") checked @endif> Ya
+                                                                    <span></span>
+                                                                </label>
+                                                                <label class="mt-radio">
+                                                                    <input type="radio" name="fraction_leader" id="fraction_leader" value="no" @if (empty($speakers->fraction_leader)) checked @elseif ($speakers->fraction_leader === "no") checked @endif> Bukan
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group">
                                                                         <label class="control-label">Fraksi</label>
-                                                                        <input type="text" value="{{ $speakers->fraction->name }}" placeholder="Nama Fraksi" class="form-control" /> </div>
+                                                                        <input type="text" value="{{ $speakers->fraction->name }}" placeholder="Nama Fraksi" class="form-control" readonly="true" />
+                                                                        <input type="hidden" name="uuid" value="{{$speakers->uuid}}" /> </div>
                                                         <div class="margiv-top-10">
-                                                            <a href="javascript:;" class="btn green"> Save Changes </a>
-                                                            <a href="javascript:;" class="btn default"> Cancel </a>
+                                                            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                                                            <button type="submit" class="btn blue"> Save Changes </button>
+                                                            <button type="reset" class="btn default"> Cancel </button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -358,7 +365,10 @@
 
 @section('page-scripts')
         <script src="{{URL::asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}" type="text/javascript"></script>
-        <!--<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-        <script src="{{URL::asset('assets/global/plugins/gmaps/gmaps.min.js')}}" type="text/javascript"></script>-->
+        <?php if($message == "success") { ?>
+        <script src="{{URL::asset('assets/pages/scripts/ui-alerts-api.js')}}" type="text/javascript"></script>
+        <?php } elseif ($message == "deleted") { ?>
+        <script src="{{URL::asset('assets/pages/scripts/ui-alerts-api-deletemsg.js')}}" type="text/javascript"></script>
+        <?php } ?>
         
 @endsection

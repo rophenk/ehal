@@ -42,7 +42,7 @@ class EmailController extends Controller
 	        $message->to($speakers['email'])->subject('[HALO-KEMENTAN]'.$workmeeting['name']);
 
 	    });
-        return "Your email has been sent successfully";
+        return "Your email has been sent successfully to : ".$speakers['email'];
         //return view('emails.template', ['speakers' => $speakers, 'workmeeting' => $workmeeting, 'date' => $date]);
     }
 

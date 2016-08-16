@@ -2,7 +2,8 @@
 @section('title', 'Laporan Rapat Kerja' )
 
 @section('pagestyle')
-        <link href="../assets/pages/css/blog.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{URL::asset('assets/pages/css/blog.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{URL::asset('assets/pages/css/faq.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('breadcrumb')
@@ -39,22 +40,42 @@
                                         @endforelse
                                         </ul>
                                     </div>
-                                    <!--<div class="blog-single-foot">
-                                        <ul class="blog-post-tags">
-                                            <li class="uppercase">
-                                                <a href="javascript:;">Bootstrap</a>
-                                            </li>
-                                            <li class="uppercase">
-                                                <a href="javascript:;">Sass</a>
-                                            </li>
-                                            <li class="uppercase">
-                                                <a href="javascript:;">HTML</a>
-                                            </li>
-                                        </ul>
-                                    </div>-->
+                                </div>
+                                
+                                    
+                        </div>
+                            
+                    </div>
+                    <div class="faq-page faq-content-1">
+                        <div class="faq-content-container">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <div class="faq-section bordered">
+                                        <h2 class="faq-title uppercase font-blue">Pertanyaan Rapat Kerja</h2>
+                                        <div class="panel-group accordion faq-content" id="accordion1">
+                                            @forelse($workmeeting_question as $question)
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <span class="panel-title">
+                                                        <i class="fa fa-circle"></i>
+                                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ $question->id }}" href="#collapse_{{ $question->id }}">{{ $question->question }}</a>
+                                                    </span>
+                                                </div>
+                                                <div id="collapse_{{ $question->id }}" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <p align="right"> {{ $question->name }} - {{ $question->fraction }}</p>
+                                                        <p> {{ $question->answer }} </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @empty
+                                            @endforelse
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div
+                        </div>
+                    </div>
 @endsection
 
 @section('page-plugins')

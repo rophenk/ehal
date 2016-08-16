@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 Use DB;
+use Redis;
+use Cache;
 
 class HomeController extends Controller
 {
@@ -36,6 +38,7 @@ class HomeController extends Controller
      */
     public function dashboard(Request $request)
     {
+
         $user       = $request->user();
         $workmeeting = DB::table('workmeeting')
                      ->select(DB::raw('count(id) as count'))
@@ -66,6 +69,8 @@ class HomeController extends Controller
                      ->inRandomOrder()
                      ->take(3)
                      ->get();
+
+        
 
         //var_dump($workmeeting_timeline);die();
         return view('halo.dashboard', ['user' => $user, 'workmeeting' => $workmeeting, 'speakers' => $speakers, 'random_speakers' => $random_speakers, 'workmeeting_question' => $workmeeting_question, 'workmeeting_document' => $workmeeting_document, 'workmeeting_timeline' => $workmeeting_timeline]);

@@ -44,7 +44,10 @@ class WorkmeetingController extends Controller
         $user       = $request->user();
         $message    = $request->message;
 
-        return view('halo.workmeeting-add', ['message' => $message, 'user' => $user]);
+        return view('halo.workmeeting-add', [
+            'message' => $message, 
+            'user' => $user
+            ]);
     }
 
     /**
@@ -74,7 +77,10 @@ class WorkmeetingController extends Controller
             $message = 'failed';
         }
 
-        return view('halo.workmeeting-add', ['message' => $message, 'user' => $user]);
+        return view('halo.workmeeting-add', [
+            'message' => $message, 
+            'user' => $user
+            ]);
     }
 
     /**
@@ -87,14 +93,27 @@ class WorkmeetingController extends Controller
     {
         $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)
                        ->first();
+
         $workmeeting_document = WorkmeetingDocumentModel::where('workmeeting_id', $workmeeting->id)
                        ->get();
+
+        $workmeeting_question = DB::table('workmeeting_question')
+                                ->leftJoin('speakers', 'speakers.id', '=', 'workmeeting_question.speakers_id')
+                                ->leftJoin('fraction', 'fraction.id', '=', 'speakers.fraction_id')
+                                ->select('workmeeting_question.id', 'workmeeting_question.question', 'workmeeting_question.answer', 'speakers.name as name', 'fraction.name as fraction')
+                                ->where('workmeeting_id', '=', $workmeeting->id)
+                                ->orderBy('workmeeting_question.id', 'asc')
+                                ->get();
+
         $explode_input_date = explode("-",$workmeeting["date"]);
         $date = $explode_input_date[2]."-".$explode_input_date[1]."-".$explode_input_date[0];
-
-
         
-        return view('halo.publicview-workmeeting', ['workmeeting' => $workmeeting, 'workmeeting_document' => $workmeeting_document, 'date' => $date]);
+        return view('halo.publicview-workmeeting', [
+            'workmeeting'           => $workmeeting, 
+            'workmeeting_document'  => $workmeeting_document,
+            'workmeeting_question'  => $workmeeting_question, 
+            'date'                  => $date
+            ]);
     }
 
     /**
@@ -116,7 +135,11 @@ class WorkmeetingController extends Controller
 
         $message = '';
 
-        return view('halo.workmeeting-edit', ['user' => $user, 'workmeeting' => $workmeeting, 'date' => $date, 'message' => $message]);
+        return view('halo.workmeeting-edit', ['user' => $user, 
+            'workmeeting' => $workmeeting, 
+            'date' => $date, 
+            'message' => $message
+            ]);
     }
 
     /**
@@ -146,7 +169,12 @@ class WorkmeetingController extends Controller
         // Tampilkan data Workmeeting
         $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)
                        ->get();
-        return view('halo.workmeeting-edit', ['message' => $message, 'date' => $request->date, 'workmeeting' => $workmeeting, 'user' => $user]);
+        return view('halo.workmeeting-edit', [
+            'message' => $message, 
+            'date' => $request->date, 
+            'workmeeting' => $workmeeting, 
+            'user' => $user
+            ]);
     }
 
     /**
@@ -163,7 +191,11 @@ class WorkmeetingController extends Controller
         $workmeeting = WorkmeetingModel::where('uuid', $uuid)->delete();
 
         $message = 'deleted';
-        return view('halo.workmeeting-add', ['message' => $message, 'workmeeting' => $workmeeting, 'user' => $user]);
+        return view('halo.workmeeting-add', [
+            'message' => $message, 
+            'workmeeting' => $workmeeting, 
+            'user' => $user
+            ]);
     }
 
     public function questions(Request $request)
@@ -181,8 +213,16 @@ class WorkmeetingController extends Controller
                                 ->orderBy('workmeeting_question.id', 'asc')
                                 ->get();
 
+        $workmeeting_document = WorkmeetingDocumentModel::where('workmeeting_id', $workmeeting_id)
+                                ->get();
         $message = '';
         //return $workmeeting_question;
-        return view('halo.workmeeting-questions', ['message' => $message, 'workmeeting' => $workmeeting, 'user' => $user, 'workmeeting_question' => $workmeeting_question]);
+        return view('halo.workmeeting-questions', [
+            'message' => $message, 
+            'workmeeting' => $workmeeting, 
+            'user' => $user, 
+            'workmeeting_question' => $workmeeting_question, 
+            'workmeeting_document' => $workmeeting_document
+            ]);
     }
 }

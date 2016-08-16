@@ -49,8 +49,16 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/speaker-view/{uuid?}', 'SpeakersController@show');
 	Route::get('/add-speaker', 'SpeakersController@create');
 	Route::post('/add-speaker', 'SpeakersController@store');
+	Route::post('/edit-speaker/{uuid?}', 'SpeakersController@update');
 
 	Route::get('/alerts', 'WorkmeetingController@alerts');
+
+	/* Questions Routes */
+	Route::get('/add-question/{uuid?}', 'QuestionsController@create');
+	Route::post('/add-question/{uuid?}', 'QuestionsController@store');
+	Route::get('/delete-question/{id?}/{uuid?}', 'QuestionsController@destroy');
+	Route::get('/edit-question/{id?}/{uuid?}', 'QuestionsController@edit');
+	Route::post('/edit-question/{id?}/{uuid?}', 'QuestionsController@update');
 
 	/* Email Routes */
 	Route::get('/send', 'EmailController@send');
@@ -70,8 +78,17 @@ Route::group(['middleware' => ['web']], function () {
 
 	    });
 
-	    return "Your email has been sent successfully";
+	    return "Your email has been sent successfully to : rophenk@gmail.com";
 
 	});
+
+	/* Redis Routes */
+	Route::get('/testredis', function() {
+		$redis = app()->make('redis');
+		$redis->set("key1", "testValue");
+		return $redis->get("key1");
+
+	});
+
 });
 
