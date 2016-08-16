@@ -2,7 +2,8 @@
 @section('title', 'Detail Anggota' )
 
 @section('pagestyle')
-        
+        <link href="{{URL::asset('assets/global/plugins/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{URL::asset('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{URL::asset('assets/pages/css/profile-2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('breadcrumb')
@@ -71,76 +72,66 @@
                                                 <div class="tab-content">
                                                     <div class="tab-pane active" id="tab_1_11">
                                                         <div class="portlet-body">
-                                                            <table class="table table-striped table-bordered table-advance table-hover">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th>
-                                                                                        <i class="fa fa-briefcase"></i> Kegiatan</th>
-                                                                                    <th class="hidden-xs">
-                                                                                        <i class="icon-paper-clip"></i> Berkas </th>
-                                                                                    <th>
-                                                                                        <i class="fa fa-calendar"></i> Tanggal Dikirim </th>
-                                                                                    <th> </th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <a href="javascript:;"> Rapat Kerja Menteri Pertanian RI Dengan Komisi IV DPR RI RKA-KL Dalam RUU APBNP 2016 Dan Persiapan Ramadhan Dan Idul Fitri</a>
-                                                                                    </td>
-                                                                                    <td class="hidden-xs"> <a target="_blank" href="http://120.89.88.35/ehal/kompilasi/160608%20APBNP2016%20DAN%20PERSIAPAN%20IDUL%20FITRI-2.pptx">160608 APBNP2016 DAN PERSIAPAN IDUL FITRI-2.pptx</a></td>
-                                                                                    <td> 10 Juni 2016
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <a class="btn btn-sm grey-salsa btn-outline" href="javascript:;"> View </a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <a href="javascript:;">Rapat Kerja Menteri Pertanian RI Dengan Komisi IV DPR RI APBN Perubahan 2016 Dan Rancangan Program Dan Anggaran Kementerian Pertanian TA 2017</a>
-                                                                                    </td>
-                                                                                    <td class="hidden-xs"><a target="_blank" href="http://120.89.88.35/ehal/kompilasi/160613 RANCANGAN APBN-P 2016 DAN RAPBN 2017-rev4.pptx">160613 RANCANGAN APBN-P 2016 DAN RAPBN 2017-rev4.pptx</a></td>
-                                                                                    <td> 15 Juni 2016
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <a class="btn btn-sm grey-salsa btn-outline" href="javascript:;"> View </a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <a href="javascript:;"> Rapat Kerja Menteri Pertanian RI Dengan Komite II DPR RI Pelaksanaan UU NO. 39 Tahun 2014 Dan Kesiapan Pemerintah Menjelang Hari Raya Idul Fitri </a>
-                                                                                    </td>
-                                                                                    <td class="hidden-xs"><a target="_blank" href="http://120.89.88.35/ehal/kompilasi/160621 RAKER DPD PERSIAPAN IDUL FITRI-REV3.pptx">160621 RAKER DPD PERSIAPAN IDUL FITRI-REV3.pptx</a></td>
-                                                                                    <td> 23 Juni 2016
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <a class="btn btn-sm grey-salsa btn-outline" href="javascript:;"> View </a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <a href="javascript:;">Rapat Kerja Menteri Pertanian RI Dengan Komisi IV DPR RI Perubahan Alokasi TA 2016 Dan Ketersediaan Bahan Pangan Dan Harga Pangan Selama Ramadhan Dan Idul Fitri 1437 H </a>
-                                                                                    </td>
-                                                                                    <td class="hidden-xs"><a target="_blank" href="http://120.89.88.35/ehal/kompilasi/160622 RAKER APBNP 2016 DAN PERSIAPAN HARI RAYA-rev3.pptx">160622 RAKER APBNP 2016 DAN PERSIAPAN HARI RAYA-rev3.pptx</a></td>
-                                                                                    <td> 24 Juni 2016
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <a class="btn btn-sm grey-salsa btn-outline" href="javascript:;"> View </a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <a href="javascript:;">Rapat Kerja Menteri Pertanian RI Dengan Komisi IV DPR RI Evaluasi Hasil Kunjungan Kerja Spesifik Mengenai Ketersediaan Bahan Pangan Dan Harga Pangan Selama Bulan Ramadhan Dan Hari Raya Idul Fitri 1437 H </a>
-                                                                                    </td>
-                                                                                    <td class="hidden-xs"><a target="_blank" href="http://120.89.88.35/ehal/kompilasi/160627 EVALUASI KUNKER SPESIFIK-rev 2.ppt">160627 EVALUASI KUNKER SPESIFIK-rev 2.ppt</a></td>
-                                                                                    <td> 29 Juni 2016
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <a class="btn btn-sm grey-salsa btn-outline" href="javascript:;"> View </a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                             </table>
+                                                   <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> 
+                                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                                    <input type="checkbox" class="checkboxes" value="1" />
+                                                                    <span></span>
+                                                                </label>
+                                                            </th>
+                                                            <th> No. </th>
+                                                            <th> Kegiatan </th>
+                                                            <th> Tanggal Dikirim</th>
+                                                            <!--<th> Actions </th>-->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @forelse($email_log as $log)
+                                                        <tr class="odd gradeX">
+                                                            <td>
+                                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                                    <input type="checkbox" class="checkboxes" value="1" />
+                                                                    <span></span>
+                                                                </label>
+                                                            </td>
+                                                            <td class="left"> {{ $log->id }}</td>
+                                                            <td width="40%" class="left">
+                                                                <a href="#">  {{ $log->workmeeting }}  </a> 
+                                                            </td>
+                                                            <td width="40%" class="left"> {{ $log->created_at }}</td>
+                                                            <!--<td>
+                                                                <div class="btn-group">
+                                                                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                                        <i class="fa fa-angle-down"></i>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu" role="menu">
+                                                                        <li>
+                                                                            <a href="/speaker-view/{{ $speakers->uuid }}">
+                                                                                <i class="fa fa-edit"></i> Edit </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>-->
+                                                        </tr>
+                                                    @empty
+                                                      <tr class="odd gradeX">
+                                                            <td> </td>
+                                                            <td>
+                                                                <a href="#"> BELUM ADA DATA</a>
+                                                            </td>
+                                                            <td>
+                                                                <span class="label label-sm label-success">  </span>
+                                                            </td>
+                                                            <td class="center">  </td>
+                                                            <td>
+
+                                                            </td>
+                                                        </tr>
+                                                      @endforelse
+                                                    </tbody>
+                                                </table>
                                                         </div>
                                                     </div>
                                                     <!--tab-pane-->
@@ -364,6 +355,9 @@
 @endsection
 
 @section('page-scripts')
+        <script src="{{URL::asset('assets/global/scripts/datatable.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('assets/global/plugins/datatables/datatables.min.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}" type="text/javascript"></script>
         <?php if($message == "success") { ?>
         <script src="{{URL::asset('assets/pages/scripts/ui-alerts-api.js')}}" type="text/javascript"></script>

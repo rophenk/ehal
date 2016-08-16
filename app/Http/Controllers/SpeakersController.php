@@ -77,14 +77,28 @@ class SpeakersController extends Controller
      */
     public function show(Request $request)
     {
-        $user       = $request->user();
-        $speakers   = SpeakersModel::where('uuid', $request->uuid)->first();
+        $user        = $request->user();
+        $speakers    = SpeakersModel::where('uuid', $request->uuid)->first();
         $speakers_id = $speakers->id;
-        $assistant = AssistantModel::where('speakers_id', $speakers->id)->get();
+        $assistant   = AssistantModel::where('speakers_id', $speakers->id)->get();
 
-        $message = '';
+        $email_log   = DB::table('email_log')
+                        ->leftJoin('speakers', 'speakers.id', '=', 'email_log.speakers_id')
+                        ->leftJoin('workmeeting', 'workmeeting.id', '=', 'email_log.workmeeting_id')
+                        ->select('email_log.id', 'email_log.created_at', 'speakers.name as name', 'workmeeting.name as workmeeting')
+                        ->where('email_log.speakers_id', '=', $speakers_id)
+                        ->orderBy('email_log.created_at', 'desc')
+                        ->get();
+
+        $message     = '';
         //return view('halo.speaker-view', ['speakers' => $speakers, 'user' => $user]);
-        return view('halo.speaker-view-2', ['message' => $message, 'speakers' => $speakers, 'assistant' => $assistant, 'user' => $user]);
+        return view('halo.speaker-view-2', [
+            'message'   => $message, 
+            'email_log' => $email_log, 
+            'speakers'  => $speakers, 
+            'assistant' => $assistant, 
+            'user'      => $user
+        ]);
     }
 
     /**
