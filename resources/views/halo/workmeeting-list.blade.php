@@ -109,6 +109,10 @@
                                                                                 <i class="fa fa-edit"></i> Edit </a>
                                                                         </li>
                                                                         <li>
+                                                                            <a href="/add-document/{{ $workmeeting->uuid }}">
+                                                                                <i class="fa fa-paperclip"></i> Dokumen </a>
+                                                                        </li>
+                                                                        <li>
                                                                             <a href="/workmeeting-questions/{{ $workmeeting->uuid }}">
                                                                                 <i class="fa fa-question"></i>Pertanyaan</a>
                                                                         </li>

@@ -54,6 +54,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'halo' => [
+        'driver' => 'local',
+        'root'   => public_path() . '/halo',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

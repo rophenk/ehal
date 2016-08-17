@@ -35,10 +35,10 @@
                                         <span class="caption-subject bold uppercase"> Form Tambah Rapat Kerja</span>
                                     </div>
                                     <div class="actions">
-                                        <!--<a class="btn btn-circle btn-icon-only blue" href="javascript:;">
+                                        <a class="btn btn-circle btn-icon-only blue" href="/add-document/{{ $workmeeting->uuid }}">
                                             <i class="icon-cloud-upload"></i>
                                         </a>
-                                        <a class="btn btn-circle btn-icon-only green" href="javascript:;">
+                                        <!--<a class="btn btn-circle btn-icon-only green" href="javascript:;">
                                             <i class="icon-wrench"></i>
                                         </a>-->
                                         <a class="btn btn-circle btn-icon-only red" href="/delete-workmeeting/{{ $workmeeting->uuid }}" onclick="return confirmDelete();">
