@@ -56,9 +56,17 @@ Route::group(['middleware' => ['web']], function () {
 	/* Questions Routes */
 	Route::get('/add-question/{uuid?}', 'QuestionsController@create');
 	Route::post('/add-question/{uuid?}', 'QuestionsController@store');
-	Route::get('/delete-question/{id?}/{uuid?}', 'QuestionsController@destroy');
 	Route::get('/edit-question/{id?}/{uuid?}', 'QuestionsController@edit');
 	Route::post('/edit-question/{id?}/{uuid?}', 'QuestionsController@update');
+	Route::get('/delete-question/{id?}/{uuid?}', 'QuestionsController@destroy');
+
+	/* Assistant Routes */
+	Route::get('/add-assistant/{uuid?}', 'AssistantController@create');
+	Route::post('/add-assistant/{uuid?}', 'AssistantController@store');
+	Route::get('/edit-assistant/{id?}/{uuid?}', 'AssistantController@edit');
+	Route::post('/edit-assistant/{id?}/{uuid?}', 'AssistantController@update');
+	Route::get('/delete-assistant/{id?}/{uuid?}', 'AssistantController@destroy');
+
 
 	/* Email Routes */
 	Route::get('/form-email/{uuid?}', 'EmailController@form');

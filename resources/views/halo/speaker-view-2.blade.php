@@ -38,7 +38,7 @@
                                                             </li>
                                                         <?php } ?>
                                                 <li>
-                                                    <a href="javascript:;"> Sespri / TA </a>
+                                                    <a href="/add-assistant/{{ $speakers->uuid }}"> Sespri / TA </a>
                                                 </li>
                                                 
                                             </ul>
@@ -90,17 +90,17 @@
                                                     <tbody>
                                                     @forelse($email_log as $log)
                                                         <tr class="odd gradeX">
-                                                            <td>
+                                                            <td width="10%">
                                                                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                                                     <input type="checkbox" class="checkboxes" value="1" />
                                                                     <span></span>
                                                                 </label>
                                                             </td>
-                                                            <td class="left"> {{ $log->id }}</td>
-                                                            <td width="40%" class="left">
+                                                            <td width="10%" class="left"> {{ $log->id }}</td>
+                                                            <td width="60%" class="left">
                                                                 <a href="#">  {{ $log->workmeeting }}  </a> 
                                                             </td>
-                                                            <td width="40%" class="left"> {{ $log->created_at }}</td>
+                                                            <td width="20%" class="left"> {{ $log->created_at }}</td>
                                                             <!--<td>
                                                                 <div class="btn-group">
                                                                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -143,13 +143,23 @@
                                                                     <li>
                                                                         <div class="col1">
                                                                             <div class="cont">
+                                                                               
+                                                                                @if ($assistant->roles === "sespri")
+                                                                                <div class="cont-col1">
+                                                                                    <div class="label label-warning">
+                                                                                        <i class="fa fa-user-plus"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @else
                                                                                 <div class="cont-col1">
                                                                                     <div class="label label-success">
                                                                                         <i class="fa fa-user-plus"></i>
                                                                                     </div>
                                                                                 </div>
+                                                                                @endif
+                                                                                
                                                                                 <div class="cont-col2">
-                                                                                    <div class="desc">  {{ $assistant->name }}
+                                                                                    <div class="desc">  <a href="/edit-assistant/{{ $assistant->id }}/{{ $speakers->uuid }}">{{ $assistant->name }} </a>
                                                                                       <br/>
                                                                                       <i class="fa fa-phone"></i>{{ $assistant->phone }} <i class="fa fa-envelope"></i>{{ $assistant->email1 }} {{ $assistant->email2 }}
                                                                                     </div>
@@ -254,94 +264,6 @@
                                                         </div>
                                                     </form>
                                                 </div>
-                                                <div id="tab_3-3" class="tab-pane">
-                                                    <form action="#">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Current Password</label>
-                                                            <input type="password" class="form-control" /> </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label">New Password</label>
-                                                            <input type="password" class="form-control" /> </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label">Re-type New Password</label>
-                                                            <input type="password" class="form-control" /> </div>
-                                                        <div class="margin-top-10">
-                                                            <a href="javascript:;" class="btn green"> Change Password </a>
-                                                            <a href="javascript:;" class="btn default"> Cancel </a>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div id="tab_4-4" class="tab-pane">
-                                                    <form action="#">
-                                                        <table class="table table-bordered table-striped">
-                                                            <tr>
-                                                                <td> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.. </td>
-                                                                <td>
-                                                                    <div class="mt-radio-inline">
-                                                                        <label class="mt-radio">
-                                                                            <input type="radio" name="optionsRadios1" value="option1" /> Yes
-                                                                            <span></span>
-                                                                        </label>
-                                                                        <label class="mt-radio">
-                                                                            <input type="radio" name="optionsRadios1" value="option2" checked/> No
-                                                                            <span></span>
-                                                                        </label>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                                <td>
-                                                                    <div class="mt-radio-inline">
-                                                                        <label class="mt-radio">
-                                                                            <input type="radio" name="optionsRadios21" value="option1" /> Yes
-                                                                            <span></span>
-                                                                        </label>
-                                                                        <label class="mt-radio">
-                                                                            <input type="radio" name="optionsRadios21" value="option2" checked/> No
-                                                                            <span></span>
-                                                                        </label>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                                <td>
-                                                                    <div class="mt-radio-inline">
-                                                                        <label class="mt-radio">
-                                                                            <input type="radio" name="optionsRadios31" value="option1" /> Yes
-                                                                            <span></span>
-                                                                        </label>
-                                                                        <label class="mt-radio">
-                                                                            <input type="radio" name="optionsRadios31" value="option2" checked/> No
-                                                                            <span></span>
-                                                                        </label>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-                                                                <td>
-                                                                    <div class="mt-radio-inline">
-                                                                        <label class="mt-radio">
-                                                                            <input type="radio" name="optionsRadios41" value="option1" /> Yes
-                                                                            <span></span>
-                                                                        </label>
-                                                                        <label class="mt-radio">
-                                                                            <input type="radio" name="optionsRadios41" value="option2" checked/> No
-                                                                            <span></span>
-                                                                        </label>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                        <!--end profile-settings-->
-                                                        <div class="margin-top-10">
-                                                            <a href="javascript:;" class="btn green"> Save Changes </a>
-                                                            <a href="javascript:;" class="btn default"> Cancel </a>
-                                                        </div>
-                                                    </form>
-                                                </div>
                                             </div>
                                         </div>
                                         <!--end col-md-9-->
@@ -364,5 +286,5 @@
         <?php } elseif ($message == "deleted") { ?>
         <script src="{{URL::asset('assets/pages/scripts/ui-alerts-api-deletemsg.js')}}" type="text/javascript"></script>
         <?php } ?>
-        
+        <script src="{{URL::asset('assets/pages/scripts/table-datatables-managed.js')}}" type="text/javascript"></script>
 @endsection
