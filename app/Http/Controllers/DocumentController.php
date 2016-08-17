@@ -66,9 +66,6 @@ class DocumentController extends Controller
         $workmeeting = WorkmeetingModel::where('uuid', $uuid)
                        ->first();
 
-        $doclist     = WorkmeetingDocumentModel::where('workmeeting_id', $workmeeting->id)
-                       ->get();
-
         $uploadfile  = $_FILES["upload_file"]["tmp_name"];
 
         $files       = $request->file('upload_file');
@@ -93,6 +90,9 @@ class DocumentController extends Controller
         } else {
             $message = 'failed';
         }
+
+        $doclist     = WorkmeetingDocumentModel::where('workmeeting_id', $workmeeting->id)
+                       ->get();
 
           return view('halo.document-add', [
             'message'     => $message, 
@@ -151,7 +151,12 @@ class DocumentController extends Controller
         $doc_uuid    = $request->doc_uuid;
         $message     = $request->message;
 
-        $document = WorkmeetingDocumentModel::where('uuid', $doc_uuid)->delete();
+        $docname     = WorkmeetingDocumentModel::where('uuid', $doc_uuid)
+                       ->first();
+
+        Storage::disk('halo')->delete("/document/".$request->uuid."/".$docname->title);
+
+        $doc_delete  = WorkmeetingDocumentModel::where('uuid', $doc_uuid)->delete();
 
         $workmeeting = WorkmeetingModel::where('uuid', $uuid)
                        ->first();
