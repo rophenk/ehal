@@ -81,7 +81,7 @@ class DocumentController extends Controller
             $document->uuid = Uuid::uuid4();
             $document->workmeeting_id = $workmeeting->id;
             $document->title = $files->getClientOriginalName();
-            $document->url = $url."/halo/".$request->uuid."/".$files->getClientOriginalName();
+            $document->url = $url."/halo/document/".$request->uuid."/".$files->getClientOriginalName();
             $document->save();
         }
           
