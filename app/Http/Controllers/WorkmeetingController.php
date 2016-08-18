@@ -63,11 +63,11 @@ class WorkmeetingController extends Controller
         $explode_input_date = explode("-",$request->date);
         $date = $explode_input_date[2]."-".$explode_input_date[1]."-".$explode_input_date[0];
 
-        $workmeeting = new WorkmeetingModel;
-        $workmeeting->uuid = Uuid::uuid4();
-        $workmeeting->date = $date;
-        $workmeeting->name = $request->name;
-        $workmeeting->location = $request->location;
+        $workmeeting              = new WorkmeetingModel;
+        $workmeeting->uuid        = Uuid::uuid4();
+        $workmeeting->date        = $date;
+        $workmeeting->name        = $request->name;
+        $workmeeting->location    = $request->location;
         $workmeeting->description = $request->description;
         $workmeeting->save();
 
@@ -161,6 +161,7 @@ class WorkmeetingController extends Controller
         ->update([
             'date' => $date,
             'name' => $request->name,
+            'location' => $request->location,
             'description' => $request->description
             ]);
 
