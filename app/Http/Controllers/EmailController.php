@@ -20,17 +20,17 @@ class EmailController extends Controller
 
         $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)
                        ->first();
-        $fpdip      = ['fraction_id' => '1', 'fraction_leader' => NULL];
-        $fpg        = ['fraction_id' => '2', 'fraction_leader' => NULL];
-        $fgerindra  = ['fraction_id' => '3', 'fraction_leader' => NULL];
-        $fpd        = ['fraction_id' => '4', 'fraction_leader' => NULL];
-        $fpan       = ['fraction_id' => '5', 'fraction_leader' => NULL];
-        $fpkb       = ['fraction_id' => '6', 'fraction_leader' => NULL];
-        $fpks       = ['fraction_id' => '7', 'fraction_leader' => NULL];
-        $fppp       = ['fraction_id' => '8', 'fraction_leader' => NULL];
-        $fpnasdem   = ['fraction_id' => '9', 'fraction_leader' => NULL];
-        $fphanura   = ['fraction_id' => '10', 'fraction_leader' => NULL];
-        $fptest     = ['fraction_id' => '11', 'fraction_leader' => NULL];
+        $fpdip      = ['fraction_id' => '1', 'fraction_leader' => 'no'];
+        $fpg        = ['fraction_id' => '2', 'fraction_leader' => 'no'];
+        $fgerindra  = ['fraction_id' => '3', 'fraction_leader' => 'no'];
+        $fpd        = ['fraction_id' => '4', 'fraction_leader' => 'no'];
+        $fpan       = ['fraction_id' => '5', 'fraction_leader' => 'no'];
+        $fpkb       = ['fraction_id' => '6', 'fraction_leader' => 'no'];
+        $fpks       = ['fraction_id' => '7', 'fraction_leader' => 'no'];
+        $fppp       = ['fraction_id' => '8', 'fraction_leader' => 'no'];
+        $fpnasdem   = ['fraction_id' => '9', 'fraction_leader' => 'no'];
+        $fphanura   = ['fraction_id' => '10', 'fraction_leader' => 'no'];
+        $fptest     = ['fraction_id' => '11', 'fraction_leader' => 'no'];
 
         $speakers_fraction_leader   = SpeakersModel::where('fraction_leader', 'yes')->get();
         $speakers_fpdip             = SpeakersModel::where($fpdip)->get();
