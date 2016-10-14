@@ -34,7 +34,7 @@
                                                 <?php if(!empty($speakers->photo)) { ?>
                                                             <li>
                                                                 <img src="{{ $speakers->photo }}" class="img-responsive pic-bordered" alt="" />
-                                                                <a href="javascript:;" class="profile-edit"> edit </a>
+                                                                <a href="/speaker-view/{{$speakers->uuid}}/#tab_2-2" class="profile-edit"> edit </a>
                                                             </li>
                                                         <?php } ?>
                                                 <li>
