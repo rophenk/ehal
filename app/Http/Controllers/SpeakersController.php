@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 use App\Http\Requests;
 use Ramsey\Uuid\Uuid;
@@ -136,7 +138,80 @@ class SpeakersController extends Controller
         $speakers_id = $speakers->id;
         $assistant = AssistantModel::where('speakers_id', $speakers->id)->get();
 
-        return view('halo.speaker-view-2', ['message' => $message, 'speakers' => $speakers, 'assistant' => $assistant, 'user' => $user]);
+        return view('halo.speaker-view-2', [
+            'message' => $message, 
+            'speakers' => $speakers, 
+            'assistant' => $assistant, 
+            'user' => $user
+            ]);
+    }
+
+    /**
+     * Update the avatar in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePhoto(Request $request)
+    {
+        $user       = $request->user();
+
+        //find old url photo if not empty
+        $currentPhoto = $request->current_photo;
+        $url = $currentPhoto;
+        $file = file_get_contents($url); // to get file
+        $name = basename($url); // to get file name
+        $ext = pathinfo($url, PATHINFO_EXTENSION); // to get extension
+        $name2 =pathinfo($url, PATHINFO_FILENAME); //file name without extension
+
+        // delete current photo if not empty
+        if(!empty($currentPhoto)) 
+        {
+            Storage::disk('halo')->delete("/speakers/".$request->uuid."/".$name2.'.'.$ext);
+        }
+
+        // process file upload
+        $uploadfile  = $_FILES["file_photo"]["tmp_name"];
+
+        $files       = $request->file('file_photo');
+
+        $url         = config('app.url');
+
+        $fileput     = Storage::disk('halo')->put("/speakers/".$request->uuid."/".$files->getClientOriginalName(), file_get_contents($files));
+
+        if($fileput == TRUE)
+        {
+            SpeakersModel::where('uuid',$request->uuid)
+            ->update([
+                'photo' => $url."/halo/speakers/".$request->uuid."/".$files->getClientOriginalName()
+                ]);
+            $message = 'success';
+        }
+        else
+        {
+            $message = 'failed';
+        }
+
+        $speakers   = SpeakersModel::where('uuid', $request->uuid)->first();
+        $speakers_id = $speakers->id;
+        $assistant = AssistantModel::where('speakers_id', $speakers->id)->get();
+        $email_log   = DB::table('email_log')
+                        ->leftJoin('speakers', 'speakers.id', '=', 'email_log.speakers_id')
+                        ->leftJoin('workmeeting', 'workmeeting.id', '=', 'email_log.workmeeting_id')
+                        ->select('email_log.id', 'email_log.created_at', 'speakers.name as name', 'workmeeting.name as workmeeting')
+                        ->where('email_log.speakers_id', '=', $speakers_id)
+                        ->orderBy('email_log.created_at', 'desc')
+                        ->get();
+
+        return view('halo.speaker-view-2', [
+            'message'   => $message, 
+            'email_log' => $email_log, 
+            'speakers'  => $speakers, 
+            'assistant' => $assistant, 
+            'user'      => $user
+            ]);
+
     }
 
     /**

@@ -55,6 +55,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/add-speaker', 'SpeakersController@create');
 	Route::post('/add-speaker', 'SpeakersController@store');
 	Route::post('/edit-speaker/{uuid?}', 'SpeakersController@update');
+	Route::post('/change-speaker-photo', 'SpeakersController@updatePhoto');
 
 	Route::get('/alerts', 'WorkmeetingController@alerts');
 

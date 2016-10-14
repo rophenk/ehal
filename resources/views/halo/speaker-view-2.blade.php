@@ -233,7 +233,7 @@
                                                     </form>
                                                 </div>
                                                 <div id="tab_2-2" class="tab-pane">
-                                                    <form action="#" role="form">
+                                                    <form action="/change-speaker-photo" role="form" method="post" enctype="multipart/form-data">
                                                         <div class="form-group">
                                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
@@ -249,7 +249,11 @@
                                                                     <span class="btn default btn-file">
                                                                         <span class="fileinput-new"> Select image </span>
                                                                         <span class="fileinput-exists"> Change </span>
-                                                                        <input type="file" name="..."> </span>
+                                                                        <input type="file" name="file_photo"> 
+                                                                        <input type="hidden" name="uuid" value="{{ $speakers->uuid }}">
+                                                                        <input type="hidden" name="current_photo" value="{{ $speakers->photo }}">
+                                                                        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                                                                    </span>
                                                                     <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
                                                                 </div>
                                                             </div>
@@ -259,7 +263,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="margin-top-10">
-                                                            <a href="javascript:;" class="btn green"> Submit </a>
+                                                            <input type="submit" class="btn btn-primary" name='submit_image' value="Unggah Photo" />
                                                             <a href="javascript:;" class="btn default"> Cancel </a>
                                                         </div>
                                                     </form>
