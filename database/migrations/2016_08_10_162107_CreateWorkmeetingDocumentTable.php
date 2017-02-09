@@ -23,6 +23,7 @@ class CreateWorkmeetingDocumentTable extends Migration
                   ->onDelete('cascade');
             $table->text('title')->nullable();
             $table->text('url')->nullable();
+            $table->string('type')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
         });

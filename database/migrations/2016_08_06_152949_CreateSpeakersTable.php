@@ -24,6 +24,7 @@ class CreateSpeakersTable extends Migration
             $table->string('email')->nullable();
             $table->string('photo')->nullable();
             $table->string('fraction_leader')->nullable();
+            $table->string('type')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
         });

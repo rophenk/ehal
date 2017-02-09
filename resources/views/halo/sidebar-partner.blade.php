@@ -42,35 +42,6 @@
                                         <span class="title">Tabel Rapat Kerja</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="/question-list" class="nav-link ">
-                                        <span class="title">Tabel Pertanyaan</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="/answer-list" class="nav-link ">
-                                        <span class="title">Tabel Jawaban</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item active open">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="icon-users"></i>
-                                <span class="title">Data Anggota</span>
-                                <span class="arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li class="nav-item  ">
-                                    <a href="/speakers-list" class="nav-link ">
-                                        <span class="title">Tabel Anggota</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="/kementan-list" class="nav-link ">
-                                        <span class="title">Tabel Kementan</span>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         

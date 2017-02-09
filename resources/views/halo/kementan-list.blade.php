@@ -1,5 +1,5 @@
 @extends('halo.master')
-@section('title', 'Tabel Rapat Kerja' )
+@section('title', 'Data Kementan' )
 
 @section('pagestyle')
         <link href="{{URL::asset('assets/global/plugins/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
@@ -9,7 +9,7 @@
 @section('breadcrumb')
 
                         <li>
-                            <a href="/workmeeting-list" class="active">Tabel Rapat Kerja</a>
+                            <a href="/home" class="active">Data Kementan</a>
                         </li>
 @endsection
 
@@ -21,7 +21,7 @@
                                             <div class="portlet-title">
                                                 <div class="caption font-dark">
                                                     <i class="icon-settings font-dark"></i>
-                                                    <span class="caption-subject bold uppercase"> Rapat Kerja</span>
+                                                    <span class="caption-subject bold uppercase"> Daftar Kementan</span>
                                                 </div>
                                                 <!--<div class="actions">
                                                     <div class="btn-group btn-group-devided" data-toggle="buttons">
@@ -35,17 +35,15 @@
                                             <div class="portlet-body">
                                                 <div class="table-toolbar">
                                                     <div class="row">
-                                                        @if($user->type != "mitra")
                                                         <div class="col-md-6">
                                                             <div class="btn-group">
-                                                                <a href="/add-workmeeting">
-                                                                  <button id="sample_editable_1_new" class="btn sbold green"> Tambah Rapat Kerja
+                                                                <a href="/add-speaker/#tab_1_3">
+                                                                  <button id="sample_editable_1_new" class="btn sbold green"> Tambah Kementan
                                                                     <i class="fa fa-plus"></i>
                                                                   </button>
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        @endif
                                                         <!--<div class="col-md-6">
                                                             <div class="btn-group pull-right">
                                                                 <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
@@ -79,16 +77,20 @@
                                                                 </label>
                                                             </th>
                                                             <th> No. </th>
-                                                            <th> Nama Kegiatan </th>
-                                                            <th> Pelaksanaan </th>
-                                                            <th> Lokasi </th>
-                                                            @if($user->type != "mitra")
+                                                            <th> Nama Pegawai Kementan </th>
+                                                            <th> Satuan Kerja </th>
                                                             <th> Actions </th>
-                                                            @endif
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse ($workmeeting as $workmeeting)
+                                                    @forelse ($speakers as $speakers)
+                                                    <?php
+                                                    if($speakers->fraction_leader == "yes") {
+                                                        $leader = '<span class="label label-sm label-warning"> Ketua Fraksi </span>';
+                                                    } else {
+                                                        $leader = '';
+                                                    }
+                                                    ?>
                                                         <tr class="odd gradeX">
                                                             <td>
                                                                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
@@ -96,13 +98,11 @@
                                                                     <span></span>
                                                                 </label>
                                                             </td>
-                                                            <td class="left"> {{ $workmeeting->id }}</td>
+                                                            <td class="left"> {{ $speakers->id }}</td>
                                                             <td width="40%" class="left">
-                                                                <a target="_blank" href="/show-workmeeting/{{ $workmeeting->uuid }}"> {{ $workmeeting->name }} </a>
+                                                                <a href="/speaker-view/{{ $speakers->uuid }}">  {{ $speakers->name }}  </a> <?php echo $leader; ?>
                                                             </td>
-                                                            <td width="20%" class="left"> {{ $workmeeting->date }} </td>
-                                                            <td width="20%" class="left"> {{ $workmeeting->location }} </td>
-                                                            @if($user->type != "mitra")
+                                                            <td width="40%" class="left"> {{ $speakers->fraction->name }}</td>
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -110,42 +110,28 @@
                                                                     </button>
                                                                     <ul class="dropdown-menu" role="menu">
                                                                         <li>
-                                                                            <a href="/edit-workmeeting/{{ $workmeeting->uuid }}">
+                                                                            <a href="/speaker-view/{{ $speakers->uuid }}">
                                                                                 <i class="fa fa-edit"></i> Edit </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/add-document/{{ $workmeeting->uuid }}">
-                                                                                <i class="fa fa-paperclip"></i> Dokumen </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/workmeeting-questions/{{ $workmeeting->uuid }}">
-                                                                                <i class="fa fa-question"></i>Pertanyaan</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/form-email/{{ $workmeeting->uuid }}">
-                                                                                <i class="fa fa-envelope"></i>Kirim Via Email</a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
                                                             </td>
-                                                            @endif
                                                         </tr>
-                                                         @empty
-                                                          <tr class="odd gradeX">
-                                                                <td> </td>
-                                                                <td>
-                                                                    <a href="#"> BELUM ADA DATA</a>
-                                                                </td>
-                                                                <td>
-                                                                    <span class="label label-sm label-success">  </span>
-                                                                </td>
-                                                                <td class="center">  </td>
-                                                                <td>
+                                                    @empty
+                                                      <tr class="odd gradeX">
+                                                            <td> </td>
+                                                            <td>
+                                                                <a href="#"> BELUM ADA DATA</a>
+                                                            </td>
+                                                            <td>
+                                                                <span class="label label-sm label-success">  </span>
+                                                            </td>
+                                                            <td class="center">  </td>
+                                                            <td>
 
-                                                                </td>
-                                                            </tr>
-                                                          @endforelse
-                                                            
+                                                            </td>
+                                                        </tr>
+                                                      @endforelse
                                                     </tbody>
                                                 </table>
                                             </div>

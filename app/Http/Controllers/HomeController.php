@@ -27,7 +27,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $user       = $request->user();
+        $user = $request->user();
+
         return view('halo.dashboard', ['user' => $user]);
     }
 
@@ -73,7 +74,15 @@ class HomeController extends Controller
         
 
         //var_dump($workmeeting_timeline);die();
-        return view('halo.dashboard', ['user' => $user, 'workmeeting' => $workmeeting, 'speakers' => $speakers, 'random_speakers' => $random_speakers, 'workmeeting_question' => $workmeeting_question, 'workmeeting_document' => $workmeeting_document, 'workmeeting_timeline' => $workmeeting_timeline]);
+        return view('halo.dashboard', [
+            'user'        => $user, 
+            'workmeeting' => $workmeeting, 
+            'speakers'    => $speakers, 
+            'random_speakers' => $random_speakers, 
+            'workmeeting_question' => $workmeeting_question, 
+            'workmeeting_document' => $workmeeting_document, 
+            'workmeeting_timeline' => $workmeeting_timeline
+            ]);
 
 
     }

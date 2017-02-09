@@ -76,7 +76,12 @@ if(isset($first)){
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN SIDEBAR -->
+            @if($user->type === "mitra")
+            @include('halo.sidebar-partner');
+            @else
             @include('halo.sidebar');
+            @endif
+            
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             <div class="page-content-wrapper">

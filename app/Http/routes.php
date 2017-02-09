@@ -59,6 +59,9 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::get('/alerts', 'WorkmeetingController@alerts');
 
+	/* Kementan Routes */
+	Route::get('/kementan-list', 'SpeakersController@kementan');
+
 	/* Questions Routes */
 	Route::get('/add-question/{uuid?}', 'QuestionsController@create');
 	Route::post('/add-question/{uuid?}', 'QuestionsController@store');

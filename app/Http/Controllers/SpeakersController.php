@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\File;
 use App\Http\Requests;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 use App\Models\SpeakersModel;
 use App\Models\FractionModel;
 use App\Models\AssistantModel;
@@ -40,7 +42,11 @@ class SpeakersController extends Controller
         $fraction   = FractionModel::all();
         $message    = $request->message;
 
-        return view('halo.speaker-add', ['message' => $message, 'user' => $user, 'fraction' => $fraction]);
+        return view('halo.speaker-add', [
+            'message' => $message, 
+            'user' => $user, 
+            'fraction' => $fraction
+        ]);
     }
 
     /**
@@ -60,6 +66,7 @@ class SpeakersController extends Controller
         $speaker->email = $request->email;
         $speaker->fraction_leader = $request->fraction_leader;
         $speaker->photo = NULL;
+        $speaker->type = $request->type;
         $speaker->save();
 
         if($speaker->save() == TRUE) {
@@ -68,7 +75,10 @@ class SpeakersController extends Controller
             $message = 'failed';
         }
 
-        return view('halo.workmeeting-add', ['message' => $message, 'user' => $user]);
+        return view('halo.workmeeting-add', [
+            'message' => $message, 
+            'user' => $user
+        ]);
     }
 
     /**
@@ -223,5 +233,23 @@ class SpeakersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function kementan(Request $request)
+    {
+        $user   = $request->user();
+        $client = new Client();
+        $res    = $client->request('GET', env('TANDEM_URL').'/list-users', []);
+        $body   = $res->getBody();
+        var_dump($body);die();
+        return view('halo.kementan-list', [
+            'speakers' => $kementan, 
+            'user' => $user
+        ]);
     }
 }
