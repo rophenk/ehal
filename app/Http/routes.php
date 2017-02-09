@@ -43,6 +43,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/attachment-workmeeting/{uuid?}', 'HomeController@dashboard');
 	Route::get('/show-workmeeting/{uuid?}', 'WorkmeetingController@show');
 	Route::get('/workmeeting-questions/{uuid?}', 'WorkmeetingController@questions');
+	Route::get('/question-list', 'WorkmeetingController@listQuestionDoc');
+	Route::get('/answer-list', 'WorkmeetingController@listAnswerDoc');
 
 	/* Document Routes */
 	Route::get('/add-document/{uuid?}', 'DocumentController@create');

@@ -226,4 +226,26 @@ class WorkmeetingController extends Controller
             'workmeeting_document' => $workmeeting_document
             ]);
     }
+
+    public function listQuestionDoc(Request $request)
+    {
+        $user           = $request->user();
+        $document       = WorkmeetingDocumentModel::where('type', '=', 'question')->get();
+
+        return view('halo.question-list', [
+            'document' => $document,
+            'user' => $user
+        ]);
+    }
+
+    public function listAnswerDoc(Request $request)
+    {
+        $user           = $request->user();
+        $document       = WorkmeetingDocumentModel::where('type', '=', 'answer')->get();
+
+        return view('halo.question-list', [
+            'document' => $document,
+            'user' => $user
+        ]);
+    }
 }

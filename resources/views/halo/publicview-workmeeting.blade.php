@@ -35,7 +35,9 @@
                                         <h5>Dokumen</h5>
                                         <ul>
                                         @forelse($workmeeting_document as $document)
+                                            @if($document->type === "raker")
                                             <li><a href="{{ $document->url }}" target="_blank">{{ $document->title }}</a></li>
+                                            @endif
                                         @empty
                                         @endforelse
                                         </ul>

@@ -33,7 +33,16 @@
 								<div class="portlet-body form">
 								{{ $workmeeting->name }}
 									<form action="/add-document/{{ $workmeeting->uuid }}" id="myForm" name="frmupload" method="post" enctype="multipart/form-data">
-									  <input type="file" id="upload_file" name="upload_file" /><br />
+									 
+                                    <label>Tipe Dokumen</label>
+                                    <p><select class="form-control col-md-4" name="type">
+	                                        <option value="raker">Raker</option>
+	                                        <option value="question">Pertanyaan</option>
+	                                        <option value="answer">Jawaban</option>
+                                    	</select>
+                                    </p>
+                                    <hr />
+									  <input type="file" class="form-control" id="upload_file" name="upload_file" /><br />
 									  <input type="hidden" name="uuid" value="{{ $workmeeting->uuid }}">
 									  <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 									  <input type="submit" class="btn btn-primary" name='submit_image' value="Unggah Dokumen" onclick="upload_image();"/>
