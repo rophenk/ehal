@@ -35,7 +35,7 @@
                                             <div class="portlet-body">
                                                 <div class="table-toolbar">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <!--<div class="col-md-6">
                                                             <div class="btn-group">
                                                                 <a href="/add-speaker/#tab_1_3">
                                                                   <button id="sample_editable_1_new" class="btn sbold green"> Tambah Kementan
@@ -44,7 +44,7 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <!--<div class="col-md-6">
+                                                        <div class="col-md-6">
                                                             <div class="btn-group pull-right">
                                                                 <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                                                     <i class="fa fa-angle-down"></i>
@@ -76,21 +76,15 @@
                                                                     <span></span>
                                                                 </label>
                                                             </th>
-                                                            <th> No. </th>
                                                             <th> Nama Pegawai Kementan </th>
+                                                            <th> Email </th>
                                                             <th> Satuan Kerja </th>
                                                             <th> Actions </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                     @forelse ($speakers as $speakers)
-                                                    <?php
-                                                    if($speakers->fraction_leader == "yes") {
-                                                        $leader = '<span class="label label-sm label-warning"> Ketua Fraksi </span>';
-                                                    } else {
-                                                        $leader = '';
-                                                    }
-                                                    ?>
+                                                    
                                                         <tr class="odd gradeX">
                                                             <td>
                                                                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
@@ -98,11 +92,11 @@
                                                                     <span></span>
                                                                 </label>
                                                             </td>
-                                                            <td class="left"> {{ $speakers->id }}</td>
+                                                            <td class="left"><a href="">  {{ $speakers->name }}  </a></td>
                                                             <td width="40%" class="left">
-                                                                <a href="/speaker-view/{{ $speakers->uuid }}">  {{ $speakers->name }}  </a> <?php echo $leader; ?>
+                                                                <a href="">  {{ $speakers->email }}  </a> 
                                                             </td>
-                                                            <td width="40%" class="left"> {{ $speakers->fraction->name }}</td>
+                                                            <td width="40%" class="left"> {{ $speakers->satker }}</td>
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -110,7 +104,7 @@
                                                                     </button>
                                                                     <ul class="dropdown-menu" role="menu">
                                                                         <li>
-                                                                            <a href="/speaker-view/{{ $speakers->uuid }}">
+                                                                            <a href="">
                                                                                 <i class="fa fa-edit"></i> Edit </a>
                                                                         </li>
                                                                     </ul>
@@ -134,6 +128,7 @@
                                                       @endforelse
                                                     </tbody>
                                                 </table>
+                                                <em><a href="http://tandem.setjen.pertanian.go.id">Sumber : TANDEM SETJEN PERTANIAN</a></em>
                                             </div>
                                         </div>
                                         <!-- END EXAMPLE TABLE PORTLET-->
@@ -147,4 +142,15 @@
         <script src="{{URL::asset('assets/global/plugins/datatables/datatables.min.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('assets/pages/scripts/table-datatables-managed.js')}}" type="text/javascript"></script>
+        <script type="text/javascript">
+            if (localStorage) {
+              // LocalStorage is supported!
+              console.log('LocalStorage is supported!');
+              var kementan = localStorage.getItem('kementan');
+              console.log(kementan);
+            } else {
+              // No support. Use a fallback such as browser cookies or store on the server.
+              console.log('LocalStorage is Not supported!');
+            }
+        </script>
 @endsection

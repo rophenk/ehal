@@ -243,10 +243,20 @@ class SpeakersController extends Controller
     public function kementan(Request $request)
     {
         $user   = $request->user();
-        $client = new Client();
-        $res    = $client->request('GET', env('TANDEM_URL').'/list-users', []);
-        $body   = $res->getBody();
-        var_dump($body);die();
+
+        if(isset($_SESSION['kementan'])) {
+            $kementan = $_SESSION['kementan'];
+            print_r("ambil data dari session");die();
+        } else {
+            $client = new Client();
+            $res    = $client->request('GET', env('TANDEM_URL').'/api/v1/list-users', []);
+            $body   = $res->getBody();
+            $data   = json_decode($body);
+            $kementan = $data->data;
+            $_SESSION['kementan'] = $kementan;
+        }
+
+        
         return view('halo.kementan-list', [
             'speakers' => $kementan, 
             'user' => $user
