@@ -43,7 +43,7 @@
                                 	@endforelse
                                 	</ul>
                                     <div class="btn-group">
-                                        <a href="/form-answer-question/{{$workmeeting->uuid}}">
+                                        <a href="/form-email-answer/{{$workmeeting->uuid}}">
                                           <button id="sample_editable_1_new" class="btn sbold green"> Kirim Ke Staff Lain
                                             <i class="fa fa-share"></i>
                                           </button>
