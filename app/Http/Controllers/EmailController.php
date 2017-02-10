@@ -65,6 +65,68 @@ class EmailController extends Controller
 
     }
 
+    public function formQuestion(Request $request)
+    {
+        $user       = $request->user();
+        $uuid       = $request->uuid;
+        $message    = $request->message;
+        $file = "kementan.json";
+
+        $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)
+                       ->first();
+
+        if(file_exists($file)) {
+            $data = json_decode(file_get_contents($file));
+            $kementan = $data->data;
+        } else {
+            $client = new Client();
+            $res    = $client->request('GET', env('TANDEM_URL').'/api/v1/list-users', []);
+            $body   = $res->getBody();
+            $data   = json_decode($body);
+            $kementan = $data->data;
+            file_put_contents($file, $body);
+        }
+
+        return view('halo.email-form-question', [
+            'workmeeting' => $workmeeting,
+            'message'     => $message,
+            'kementan'    => $kementan, 
+            'user'        => $user
+            ]);
+
+    }
+
+    public function formAnswer(Request $request)
+    {
+        $user       = $request->user();
+        $uuid       = $request->uuid;
+        $message    = $request->message;
+        $file = "kementan.json";
+
+        $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)
+                       ->first();
+
+        if(file_exists($file)) {
+            $data = json_decode(file_get_contents($file));
+            $kementan = $data->data;
+        } else {
+            $client = new Client();
+            $res    = $client->request('GET', env('TANDEM_URL').'/api/v1/list-users', []);
+            $body   = $res->getBody();
+            $data   = json_decode($body);
+            $kementan = $data->data;
+            file_put_contents($file, $body);
+        }
+
+        return view('halo.email-form-Answer', [
+            'workmeeting' => $workmeeting,
+            'message'     => $message,
+            'kementan'    => $kementan, 
+            'user'        => $user
+            ]);
+
+    }
+
     public function process(Request $request)
     {
         $user           = $request->user();
@@ -180,6 +242,168 @@ class EmailController extends Controller
         return view('halo.email-sent', [
             'speakers_email'    => $speakers_email,
             'assistant_email'   => $assistant_email, 
+            'workmeeting'       => $workmeeting,
+            'message'           => $message, 
+            'date'              => $date,
+            'user'              => $user
+            ]);
+    }
+
+    public function processQuestion(Request $request)
+    {
+        $user           = $request->user();
+        $uuid           = $request->uuid;
+        $message        = $request->message;    
+        $speakers_email = $request->speakers_email;
+
+        $speakers_email_address = array();
+
+        /* get workmeeting name */
+        $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)->first();
+        $explode_input_date = explode("-",$workmeeting->date);
+        $date = $explode_input_date[2]."-".$explode_input_date[1]."-".$explode_input_date[0];
+
+        $data = array(
+            'workmeeting_uuid' => $workmeeting->uuid,
+            'workmeeting_name' => $workmeeting->name, 
+            'workmeeting_location' => $workmeeting->location,
+            'workmeeting_description' => $workmeeting->description, 
+            'date' => $date
+        );
+        /* Direct Sending Email
+        $sending = Mail::send('emails.template-question', $data, function ($message) use ($speakers_email, $workmeeting) { */
+
+        /* Queue Sending The Email */
+        Mail::queue('emails.template-question', $data, function ($message) use ($speakers_email, $workmeeting) {
+
+            $message->from('hal@pertanian.go.id', 'Hubungan Antar Lembaga - Kementerian Pertanian');
+
+            foreach ($speakers_email as $email) {
+                $message->to($email);
+            }
+
+            $message->subject('[HALO-KEMENTAN][PERTANYAAN]'.$workmeeting['name']);
+
+        });
+        /* save sending email history log to database 
+
+        foreach ($speakers_email as $speakersmail) {
+
+            $sespri_email = DB::select('SELECT `email1`, `email2` FROM `assistant` WHERE `speakers_id`= '.$speakersmail->id.' AND `email1` IS NOT NULL');
+
+            if(!empty($sespri_email))
+            {
+                $sespri_address = $sespri_email;
+            } else {
+                $sespri_address = NULL;
+            }
+
+            foreach ($sespri_email as $email_sespri) {
+                if(!empty($email_sespri->email1))
+                {
+                    $sespri_email_address['email'][] = $email_sespri->email1;
+                }
+
+                if(!empty($email_sespri->email2))
+                {
+                    $sespri_email_address['email'][] = $email_sespri->email2;
+                }
+            }
+
+            DB::table('email_log')->insert(
+                [
+                    'workmeeting_id'  => $workmeeting->id, 
+                    'speakers_id'     => $speakersmail->id,
+                    'assistant_email' => json_encode($sespri_address)
+                ]
+            );
+        }*/
+
+        $message = "email_sent";
+
+        return view('halo.email-question-sent', [
+            'speakers_email'    => $speakers_email,
+            'workmeeting'       => $workmeeting,
+            'message'           => $message, 
+            'date'              => $date,
+            'user'              => $user
+            ]);
+    }
+
+    public function processAnswer(Request $request)
+    {
+        $user           = $request->user();
+        $uuid           = $request->uuid;
+        $message        = $request->message;    
+        $speakers_email = $request->speakers_email;
+
+        $speakers_email_address = array();
+
+        /* get workmeeting name */
+        $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)->first();
+        $explode_input_date = explode("-",$workmeeting->date);
+        $date = $explode_input_date[2]."-".$explode_input_date[1]."-".$explode_input_date[0];
+
+        $data = array(
+            'workmeeting_uuid' => $workmeeting->uuid,
+            'workmeeting_name' => $workmeeting->name, 
+            'workmeeting_location' => $workmeeting->location,
+            'workmeeting_description' => $workmeeting->description, 
+            'date' => $date
+        );
+        /* Direct Sending Email
+        $sending = Mail::send('emails.template-answer', $data, function ($message) use ($speakers_email, $workmeeting) { */
+
+        /* Queue Sending The Email */
+        Mail::queue('emails.template-answer', $data, function ($message) use ($speakers_email, $workmeeting) {
+
+            $message->from('hal@pertanian.go.id', 'Hubungan Antar Lembaga - Kementerian Pertanian');
+
+            foreach ($speakers_email as $email) {
+                $message->to($email);
+            }
+
+            $message->subject('[HALO-KEMENTAN][JAWABAN]'.$workmeeting['name']);
+
+        });
+        /* save sending email history log to database 
+
+        foreach ($speakers_email as $speakersmail) {
+
+            $sespri_email = DB::select('SELECT `email1`, `email2` FROM `assistant` WHERE `speakers_id`= '.$speakersmail->id.' AND `email1` IS NOT NULL');
+
+            if(!empty($sespri_email))
+            {
+                $sespri_address = $sespri_email;
+            } else {
+                $sespri_address = NULL;
+            }
+
+            foreach ($sespri_email as $email_sespri) {
+                if(!empty($email_sespri->email1))
+                {
+                    $sespri_email_address['email'][] = $email_sespri->email1;
+                }
+
+                if(!empty($email_sespri->email2))
+                {
+                    $sespri_email_address['email'][] = $email_sespri->email2;
+                }
+            }
+
+            DB::table('email_log')->insert(
+                [
+                    'workmeeting_id'  => $workmeeting->id, 
+                    'speakers_id'     => $speakersmail->id,
+                    'assistant_email' => json_encode($sespri_address)
+                ]
+            );
+        }*/
+
+        $message = "email_sent";
+
+        return view('halo.email-answer-sent', [
+            'speakers_email'    => $speakers_email,
             'workmeeting'       => $workmeeting,
             'message'           => $message, 
             'date'              => $date,

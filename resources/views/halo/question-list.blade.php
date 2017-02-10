@@ -36,7 +36,7 @@
                                                 <div class="table-toolbar">
                                                     <div class="row">
                                                         @if($user->type != "mitra")
-                                                        <div class="col-md-6">
+                                                        <!--<div class="col-md-6">
                                                             <div class="btn-group">
                                                                 <a href="/add-document">
                                                                   <button id="sample_editable_1_new" class="btn sbold green"> Tambah Pertanyaan
@@ -44,7 +44,7 @@
                                                                   </button>
                                                                 </a>
                                                             </div>
-                                                        </div>
+                                                        </div>-->
                                                         @endif
                                                         <!--<div class="col-md-6">
                                                             <div class="btn-group pull-right">
@@ -110,19 +110,7 @@
                                                                     </button>
                                                                     <ul class="dropdown-menu" role="menu">
                                                                         <li>
-                                                                            <a href="/edit-document/{{ $document->uuid }}">
-                                                                                <i class="fa fa-edit"></i> Edit </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/add-document/{{ $document->uuid }}">
-                                                                                <i class="fa fa-paperclip"></i> Dokumen </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/document-questions/{{ $document->uuid }}">
-                                                                                <i class="fa fa-question"></i>Pertanyaan</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/form-email/{{ $document->uuid }}">
+                                                                            <a href="/form-email-question/{{ $document->workmeeting->uuid }}">
                                                                                 <i class="fa fa-envelope"></i>Kirim Via Email</a>
                                                                         </li>
                                                                     </ul>

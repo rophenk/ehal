@@ -243,17 +243,18 @@ class SpeakersController extends Controller
     public function kementan(Request $request)
     {
         $user   = $request->user();
+        $file = "kementan.json";
 
-        if(isset($_SESSION['kementan'])) {
-            $kementan = $_SESSION['kementan'];
-            print_r("ambil data dari session");die();
+        if(file_exists($file)) {
+            $data = json_decode(file_get_contents($file));
+            $kementan = $data->data;
         } else {
             $client = new Client();
             $res    = $client->request('GET', env('TANDEM_URL').'/api/v1/list-users', []);
             $body   = $res->getBody();
             $data   = json_decode($body);
             $kementan = $data->data;
-            $_SESSION['kementan'] = $kementan;
+            file_put_contents($file, $body);
         }
 
         

@@ -109,20 +109,9 @@
                                                                         <i class="fa fa-angle-down"></i>
                                                                     </button>
                                                                     <ul class="dropdown-menu" role="menu">
+                                                                        
                                                                         <li>
-                                                                            <a href="/edit-document/{{ $document->uuid }}">
-                                                                                <i class="fa fa-edit"></i> Edit </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/add-document/{{ $document->uuid }}">
-                                                                                <i class="fa fa-paperclip"></i> Dokumen </a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/document-questions/{{ $document->uuid }}">
-                                                                                <i class="fa fa-question"></i>Jawaban</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/form-email/{{ $document->uuid }}">
+                                                                            <a href="/form-email-answer/{{ $document->workmeeting->uuid }}">
                                                                                 <i class="fa fa-envelope"></i>Kirim Via Email</a>
                                                                         </li>
                                                                     </ul>

@@ -116,6 +116,65 @@ class WorkmeetingController extends Controller
             ]);
     }
 
+    public function showQuestion(Request $request)
+    {
+        $uuid  = $request->uuid;
+        $docid = $request->docid;
+
+        $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)
+                       ->first();
+
+        $workmeeting_document = WorkmeetingDocumentModel::where('workmeeting_id', $workmeeting->id)
+                       ->get();
+
+        $workmeeting_question = DB::table('workmeeting_question')
+                                ->leftJoin('speakers', 'speakers.id', '=', 'workmeeting_question.speakers_id')
+                                ->leftJoin('fraction', 'fraction.id', '=', 'speakers.fraction_id')
+                                ->select('workmeeting_question.id', 'workmeeting_question.question', 'workmeeting_question.answer', 'speakers.name as name', 'fraction.name as fraction')
+                                ->where('workmeeting_id', '=', $workmeeting->id)
+                                ->orderBy('workmeeting_question.id', 'asc')
+                                ->get();
+
+        $explode_input_date = explode("-",$workmeeting["date"]);
+        $date = $explode_input_date[2]."-".$explode_input_date[1]."-".$explode_input_date[0];
+        
+        return view('halo.publicview-question', [
+            'workmeeting'           => $workmeeting, 
+            'workmeeting_document'  => $workmeeting_document,
+            'workmeeting_question'  => $workmeeting_question, 
+            'date'                  => $date
+            ]);
+    }
+
+    public function showAnswer(Request $request)
+    {
+        $uuid  = $request->uuid;
+        $docid = $request->docid;
+
+        $workmeeting = WorkmeetingModel::where('uuid', $request->uuid)
+                       ->first();
+
+        $workmeeting_document = WorkmeetingDocumentModel::where('workmeeting_id', $workmeeting->id)
+                       ->get();
+
+        $workmeeting_question = DB::table('workmeeting_question')
+                                ->leftJoin('speakers', 'speakers.id', '=', 'workmeeting_question.speakers_id')
+                                ->leftJoin('fraction', 'fraction.id', '=', 'speakers.fraction_id')
+                                ->select('workmeeting_question.id', 'workmeeting_question.question', 'workmeeting_question.answer', 'speakers.name as name', 'fraction.name as fraction')
+                                ->where('workmeeting_id', '=', $workmeeting->id)
+                                ->orderBy('workmeeting_question.id', 'asc')
+                                ->get();
+
+        $explode_input_date = explode("-",$workmeeting["date"]);
+        $date = $explode_input_date[2]."-".$explode_input_date[1]."-".$explode_input_date[0];
+        
+        return view('halo.publicview-answer', [
+            'workmeeting'           => $workmeeting, 
+            'workmeeting_document'  => $workmeeting_document,
+            'workmeeting_question'  => $workmeeting_question, 
+            'date'                  => $date
+            ]);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -243,7 +302,7 @@ class WorkmeetingController extends Controller
         $user           = $request->user();
         $document       = WorkmeetingDocumentModel::where('type', '=', 'answer')->get();
 
-        return view('halo.question-list', [
+        return view('halo.answer-list', [
             'document' => $document,
             'user' => $user
         ]);

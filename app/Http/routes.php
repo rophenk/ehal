@@ -45,6 +45,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/workmeeting-questions/{uuid?}', 'WorkmeetingController@questions');
 	Route::get('/question-list', 'WorkmeetingController@listQuestionDoc');
 	Route::get('/answer-list', 'WorkmeetingController@listAnswerDoc');
+	Route::get('/show-question/{uuid?}/{docid?}', 'WorkmeetingController@showQuestion');
+	Route::get('/show-answer/{uuid?}/{docid?}', 'WorkmeetingController@showAnswer');
 
 	/* Document Routes */
 	Route::get('/add-document/{uuid?}', 'DocumentController@create');
@@ -82,6 +84,10 @@ Route::group(['middleware' => ['web']], function () {
 	/* Email Routes */
 	Route::get('/form-email/{uuid?}', 'EmailController@form');
 	Route::post('/process-email/{uuid?}', 'EmailController@process');
+	Route::get('/form-email-question/{uuid?}', 'EmailController@formQuestion');
+	Route::post('/process-email-question/{uuid?}', 'EmailController@processQuestion');
+	Route::get('/form-email-answer/{uuid?}', 'EmailController@formAnswer');
+	Route::post('/process-email-answer/{uuid?}', 'EmailController@processAnswer');
 
 	Route::get('/send', 'EmailController@send');
 	Route::get('/testmail', 'EmailController@testMail');
