@@ -118,7 +118,7 @@ class EmailController extends Controller
             file_put_contents($file, $body);
         }
 
-        return view('halo.email-form-Answer', [
+        return view('halo.email-form-answer', [
             'workmeeting' => $workmeeting,
             'message'     => $message,
             'kementan'    => $kementan, 
