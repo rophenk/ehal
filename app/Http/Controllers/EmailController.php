@@ -7,6 +7,8 @@ use Mail;
 use App\Http\Requests;
 use App\Models\SpeakersModel;
 use App\Models\WorkmeetingModel;
+use App\Models\ReceiverModel;
+
 use DB;
 
 class EmailController extends Controller
@@ -87,10 +89,13 @@ class EmailController extends Controller
             file_put_contents($file, $body);
         }
 
+        $receiver = ReceiverModel::all();
+
         return view('halo.email-form-question', [
             'workmeeting' => $workmeeting,
             'message'     => $message,
-            'kementan'    => $kementan, 
+            //'kementan'    => $kementan, | Jika ingin menggunakan tandem
+            'kementan'    => $receiver, 
             'user'        => $user
             ]);
 

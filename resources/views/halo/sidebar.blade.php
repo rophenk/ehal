@@ -67,7 +67,10 @@
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="/kementan-list" class="nav-link ">
+                                    <!--<a href="/kementan-list" class="nav-link ">
+                                        <span class="title">Tabel Kementan</span>
+                                    </a>-->
+                                    <a href="/receiver-list" class="nav-link ">
                                         <span class="title">Tabel Kementan</span>
                                     </a>
                                 </li>

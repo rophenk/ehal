@@ -65,6 +65,11 @@ Route::group(['middleware' => ['web']], function () {
 
 	/* Kementan Routes */
 	Route::get('/kementan-list', 'SpeakersController@kementan');
+	Route::get('/receiver-list', 'ReceiverController@index');
+	Route::get('/add-receiver', 'ReceiverController@create');
+	Route::post('/add-receiver', 'ReceiverController@store');
+	Route::get('/edit-receiver/{uuid}', 'ReceiverController@edit');
+	Route::post('/edit-receiver', 'ReceiverController@update');
 
 	/* Questions Routes */
 	Route::get('/add-question/{uuid?}', 'QuestionsController@create');

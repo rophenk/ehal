@@ -82,7 +82,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <em><a href="http://tandem.setjen.pertanian.go.id">Sumber : TANDEM SETJEN PERTANIAN</a></em>
+                               <!-- <em><a href="http://tandem.setjen.pertanian.go.id">Sumber : TANDEM SETJEN PERTANIAN</a></em>-- >
                             </div>
                             <!-- END SAMPLE FORM PORTLET-->
                         </div>
