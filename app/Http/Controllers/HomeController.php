@@ -60,8 +60,12 @@ class HomeController extends Controller
         $workmeeting_timeline = DB::table('workmeeting')
                      ->select(DB::raw('id, uuid, name, date, description, DATE_FORMAT(date,"%d %b") AS date_display, DATE_FORMAT(date,"%d %M %Y") AS date_author, DATE_FORMAT(date,"%d/%m/%Y") AS date_data'))
                      ->orderBy('date', 'asc')
+                     ->orderBy('id', 'asc')
                      ->take(5)
                      ->get();
+
+        $workmeeting_timeline2 = DB::select('select * from (select id, uuid, name, date, description, DATE_FORMAT(date,"%d %b") AS date_display, DATE_FORMAT(date,"%d %M %Y") AS date_author, DATE_FORMAT(date,"%d/%m/%Y") AS date_data from workmeeting order by date desc limit 4) tmp order by tmp.id asc');
+
 
         $random_speakers = DB::table('speakers')
                      ->join('fraction', 'fraction.id', '=', 'speakers.fraction_id')
@@ -80,7 +84,7 @@ class HomeController extends Controller
             'random_speakers' => $random_speakers, 
             'workmeeting_question' => $workmeeting_question, 
             'workmeeting_document' => $workmeeting_document, 
-            'workmeeting_timeline' => $workmeeting_timeline
+            'workmeeting_timeline' => $workmeeting_timeline2
             ]);
 
 
