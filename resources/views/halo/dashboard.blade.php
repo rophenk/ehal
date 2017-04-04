@@ -108,14 +108,12 @@
                                                      <?php 
                                                      
                                                      if($key == 0) {
-                                                        $selected = 'selected'; 
+                                                        $selected = ' selected'; 
                                                     } else {
                                                         $selected ='';
                                                     }
                                                      ?>
-                                                        <li>
-                                                            <a href="#0" data-date="{{ $value->date }}" class="border-after-red bg-after-red <?php echo $selected; ?>">{{ $value->date_display }}</a>
-                                                        </li>
+                                                        <li><a href="#0" data-date="{{ $value->date_data }}" class="border-after-red bg-after-red<?php echo $selected; ?>">{{ $value->date_display }}</a></li>
                                                     @empty
                                                     @endforelse
                                                     </ol>
