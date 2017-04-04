@@ -76,6 +76,19 @@
                     </div>
 
                     <div class="row">
+                        <!--<div class="col-md-6 col-sm-6">
+                                <div class="portlet light calendar bordered">
+                                    <div class="portlet-title ">
+                                        <div class="caption">
+                                            <i class="icon-calendar font-dark hide"></i>
+                                            <span class="caption-subject font-dark bold uppercase">Feeds</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="calendar"> </div>
+                                    </div>
+                                </div>
+                            </div>-->
                         <div class="col-md-6 col-sm-6">
                             <div class="portlet light portlet-fit bordered">
                                 <div class="portlet-title">
@@ -108,9 +121,7 @@
                                                     </ol>
                                                     <span class="filling-line bg-red" aria-hidden="true"></span>
                                                 </div>
-                                                <!-- .events -->
                                             </div>
-                                            <!-- .events-wrapper -->
                                             <ul class="cd-timeline-navigation mt-ht-nav-icon">
                                                 <li>
                                                     <a href="#0" class="prev inactive btn btn-outline red md-skip">
@@ -123,9 +134,7 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                            <!-- .cd-timeline-navigation -->
                                         </div>
-                                        <!-- .timeline -->
                                         <div class="events-content">
                                             <ol>
                                             @forelse($workmeeting_timeline as $key => $value)
@@ -165,7 +174,6 @@
                                                 
                                             </ol>
                                         </div>
-                                        <!-- .events-content -->
                                     </div>
                                 </div>
                             </div>
@@ -260,4 +268,5 @@
 
 @section('page-scripts')
         <script src="../assets/pages/scripts/dashboard.js" type="text/javascript"></script>
+        <script src="../assets/apps/scripts/calendar.min.js" type="text/javascript"></script>
 @endsection

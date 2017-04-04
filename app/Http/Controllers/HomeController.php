@@ -58,8 +58,7 @@ class HomeController extends Controller
                      ->first();
 
         $workmeeting_timeline = DB::table('workmeeting')
-                     ->select(DB::raw('id, uuid, name, description, DATE_FORMAT(date,"%d %b") AS date_display, DATE_FORMAT(date,"%d %M %Y") AS date_author, DATE_FORMAT(date,"%d/%m/%Y") AS date_data'))
-                     ->orderBy('id', 'desc')
+                     ->select(DB::raw('id, uuid, name, description, date, DATE_FORMAT(date,"%d %b") AS date_display, DATE_FORMAT(date,"%d %M %Y") AS date_author, DATE_FORMAT(date,"%d/%m/%Y") AS date_data'))
                      ->orderBy('date', 'asc')
                      ->take(5)
                      ->get();
