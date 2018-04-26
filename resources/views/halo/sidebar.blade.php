@@ -43,6 +43,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
+                                    <a href="/workmeeting-list/hearing" class="nav-link ">
+                                        <span class="title">Tabel Rapat Dengar Pendapat</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
                                     <a href="/question-list" class="nav-link ">
                                         <span class="title">Tabel Pertanyaan</span>
                                     </a>

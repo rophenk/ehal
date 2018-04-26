@@ -1,5 +1,9 @@
 @extends('halo.master')
-@section('title', 'Tambah Rapat Kerja' )
+@if($category == "hearing")
+    @section('title', 'Tabel Rapat Dengar Pendapat' )
+@else
+    @section('title', 'Tabel Rapat Kerja' )
+@endif
 
 @section('pagestyle')
         <link href="{{URL::asset('assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css')}}" rel="stylesheet" type="text/css" />
@@ -20,7 +24,11 @@
 @section('breadcrumb')
 
                         <li>
-                            <a href="#" class="active">Tambah Rapat Kerja</a>
+                            @if($category == "hearing")
+                                <a href="/workmeeting-list/hearing" class="active">Tabel Rapat Dengar Pendapat</a>
+                            @else
+                                <a href="/workmeeting-list" class="active">Tabel Rapat Kerja</a>
+                            @endif
                         </li>
 @endsection
 
@@ -31,7 +39,11 @@
                                 <div class="portlet-title">
                                     <div class="caption font-green-haze">
                                         <i class="icon-settings font-green-haze"></i>
-                                        <span class="caption-subject bold uppercase"> Form Tambah Rapat Kerja</span>
+                                        @if($category == "hearing")
+                                            <span class="caption-subject bold uppercase"> Form Tambah Rapat Dengar Pendapat</span>
+                                        @else
+                                            <span class="caption-subject bold uppercase"> Form Tambah Rapat Kerja</span>
+                                        @endif
                                     </div>
                                     <div class="actions">
                                         <!--<a class="btn btn-circle btn-icon-only blue" href="javascript:;">
@@ -70,19 +82,19 @@
                                                 <div class="col-md-10">
                                                     <input type="text" name="name" class="form-control" id="form_control_1" placeholder="Nama Kegiatan">
                                                     <div class="form-control-focus"> </div>
-                                                    <span class="help-block">Diisi Lengkap dengan Tema Raker</span>
+                                                    <span class="help-block">Diisi Lengkap dengan Tema Rapat</span>
                                                 </div>
                                             </div>
                                             <div class="form-group form-md-line-input">
                                                 <label class="col-md-2 control-label" for="form_control_1">Tempat Kegiatan</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" name="location" class="form-control" id="form_control_1" placeholder="Tempat Kegiatan Raker">
+                                                    <input type="text" name="location" class="form-control" id="form_control_1" placeholder="Tempat Kegiatan Rapat">
                                                     <div class="form-control-focus"> </div>
                                                     <span class="help-block">Diisi dengan lokasi kegiatan</span>
                                                 </div>
                                             </div>
                                             <div class="form-group form-md-line-input has-success">
-                                                <label class="col-md-2 control-label" for="form_control_1">Textarea</label>
+                                                <label class="col-md-2 control-label" for="form_control_1">Keterangan</label>
                                                 <div class="col-md-10">
                                                     <textarea name="description" class="wysihtml5 form-control" rows="6" placeholder="Enter more text"></textarea>
                                                     <div class="form-control-focus"> </div>
@@ -93,6 +105,11 @@
                                             <div class="row">
                                                 <div class="col-md-offset-2 col-md-10">
                                                     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                                                    @if($category == "hearing")
+                                                        <input type="hidden" name="category" value="hearing" />
+                                                    @else
+                                                        <input type="hidden" name="category" value="workmeeting" />
+                                                    @endif
                                                     <button type="reset" class="btn default">Cancel</button>
                                                     <button type="submit" class="btn blue">Submit</button>
                                                 </div>

@@ -23,9 +23,14 @@ class WorkmeetingController extends Controller
     public function index(Request $request)
     {
         $user           = $request->user();
-        $workmeeting    = WorkmeetingModel::all();
+        $category       = $request->category;
+        if ($category == "hearing") {
+            $workmeeting    = WorkmeetingModel::where('category', '=', 'hearing')->get();
+        } else {
+            $workmeeting    = WorkmeetingModel::where('category', '=', 'workmeeting')->get();
+        }
 
-        return view('halo.workmeeting-list', ['workmeeting' => $workmeeting, 'user' => $user]);
+        return view('halo.workmeeting-list', ['workmeeting' => $workmeeting, 'user' => $user, 'category' => $category]);
     }
 
     public function alerts(Request $request)
@@ -43,9 +48,11 @@ class WorkmeetingController extends Controller
     {
         $user       = $request->user();
         $message    = $request->message;
+        $category       = $request->category;
 
         return view('halo.workmeeting-add', [
             'message' => $message, 
+            'category' => $category,
             'user' => $user
             ]);
     }
@@ -69,6 +76,7 @@ class WorkmeetingController extends Controller
         $workmeeting->name        = $request->name;
         $workmeeting->location    = $request->location;
         $workmeeting->description = $request->description;
+        $workmeeting->category    = $request->category;
         $workmeeting->save();
 
         if($workmeeting->save() == TRUE) {
@@ -79,6 +87,7 @@ class WorkmeetingController extends Controller
 
         return view('halo.workmeeting-add', [
             'message' => $message, 
+            'category' => $request->category,
             'user' => $user
             ]);
     }

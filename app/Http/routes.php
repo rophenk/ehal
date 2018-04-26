@@ -32,10 +32,11 @@ Route::group(['middleware' => ['web']], function () {
 	
 
 	/* Workmeeting Routes */
-	Route::get('/workmeeting-list', 'WorkmeetingController@index');
+	Route::get('/workmeeting-list/{category?}', 'WorkmeetingController@index');
+	Route::get('/hearing-list', 'WorkmeetingController@hearing');
 	Route::get('/workmeeting-view/{uuid?}', 'HomeController@dashboard');
 	Route::get('/workmeeting-questions', 'HomeController@dashboard');
-	Route::get('/add-workmeeting', 'WorkmeetingController@create');
+	Route::get('/add-workmeeting/{category?}', 'WorkmeetingController@create');
 	Route::post('/add-workmeeting', 'WorkmeetingController@store');
 	Route::get('/edit-workmeeting/{uuid?}', 'WorkmeetingController@edit');
 	Route::post('/edit-workmeeting/{uuid?}', 'WorkmeetingController@update');
