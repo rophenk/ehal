@@ -1,5 +1,9 @@
 @extends('halo.master')
-@section('title', 'Tabel Rapat Kerja' )
+@if($category == "hearing")
+    @section('title', 'Tabel Rapat Dengar Pendapat' )
+@else
+    @section('title', 'Tabel Rapat Kerja' )
+@endif
 
 @section('pagestyle')
         <link href="{{URL::asset('assets/global/plugins/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
@@ -7,9 +11,13 @@
 @endsection
 
 @section('breadcrumb')
-
                         <li>
-                            <a href="/workmeeting-list" class="active">Tabel Rapat Kerja</a>
+                            @if($category == "hearing")
+                                <a href="/workmeeting-list/hearing" class="active">Tabel Rapat Dengar Pendapat</a>
+                            @else
+                                <a href="/workmeeting-list" class="active">Tabel Rapat Kerja</a>
+                            @endif
+                            
                         </li>
 @endsection
 
@@ -21,7 +29,12 @@
                                             <div class="portlet-title">
                                                 <div class="caption font-dark">
                                                     <i class="icon-settings font-dark"></i>
-                                                    <span class="caption-subject bold uppercase"> Rapat Kerja</span>
+                                                     @if($category == "hearing")
+                                                        <span class="caption-subject bold uppercase"> Rapat Dengar Pendapat</span>
+                                                    @else
+                                                        <span class="caption-subject bold uppercase"> Rapat Kerja</span>
+                                                    @endif
+                                                    
                                                 </div>
                                                 <!--<div class="actions">
                                                     <div class="btn-group btn-group-devided" data-toggle="buttons">
@@ -38,11 +51,20 @@
                                                         @if($user->type != "mitra")
                                                         <div class="col-md-6">
                                                             <div class="btn-group">
-                                                                <a href="/add-workmeeting">
+                                                                @if($category == "hearing")
+                                                                    <a href="/add-workmeeting/hearing">
+                                                                  <button id="sample_editable_1_new" class="btn sbold green"> Tambah Rapat Dengar Pendapat
+                                                                    <i class="fa fa-plus"></i>
+                                                                  </button>
+                                                                </a>
+                                                                @else
+                                                                    <a href="/add-workmeeting">
                                                                   <button id="sample_editable_1_new" class="btn sbold green"> Tambah Rapat Kerja
                                                                     <i class="fa fa-plus"></i>
                                                                   </button>
                                                                 </a>
+                                                                @endif
+                                                                
                                                             </div>
                                                         </div>
                                                         @endif

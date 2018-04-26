@@ -37,6 +37,7 @@
                                     <label>Tipe Dokumen</label>
                                     <p><select class="form-control col-md-4" name="type">
 	                                        <option value="raker">Raker</option>
+	                                        <option value="hearing">Rapat Dengar Pendapat</option>
 	                                        <option value="question">Pertanyaan</option>
 	                                        <option value="answer">Jawaban</option>
                                     	</select>
